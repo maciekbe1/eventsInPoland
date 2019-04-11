@@ -1,0 +1,29 @@
+@import './colors';
+$transition: .3s;
+
+.register-page {
+  margin-bottom: 100px;
+  h1 {
+    margin: 50px 0;
+  }
+  .register-success-image {
+    margin: 50px 0;
+    width: 100px;
+  }
+  button {
+    display: flex;
+    padding: 0 40px;
+    background: $btn-color;
+    border: none;
+    border-bottom: solid 3px $btn-dark-color;
+    font-size: 1.1rem;
+    line-height: 42px;
+    color: #fff;
+    margin: 35px auto 20px auto;
+    transition: $transition;
+    &:hover {
+      background: $btn-hover-color;
+      cursor: pointer;
+    }
+  }
+}
