@@ -1,8 +1,8 @@
 import React from "react";
-import CalendarConfig from "../components/calendar/CalendarConfig";
+import CalendarConfig from "../components/Calendar/CalendarConfig";
 import moment from "moment";
 import BigCalendar from "react-big-calendar";
-import BpowerEventsStore from "../components/calendar/bpower-events-context";
+import BpowerEventsStore from "../components/Calendar/bpower-events-context";
 import "moment/locale/pl";
 import "moment/locale/en-gb";
 
