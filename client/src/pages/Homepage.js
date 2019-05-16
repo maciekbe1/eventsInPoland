@@ -5,7 +5,7 @@ import Destination from '../components/HomePage/Destination';
 import '../assets/styles/homepage.scss';
 import LatestEvents from "../components/HomePage/LatestEvents";
 
-const Homepage = () => {
+const HomePage = () => {
     return (
         <div className="homepage-wrapper">
             <Jumbotron />
@@ -16,4 +16,4 @@ const Homepage = () => {
     );
 }
 
-export default Homepage;
+export default HomePage;

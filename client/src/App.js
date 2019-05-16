@@ -9,7 +9,7 @@ import Event from "./components/EventsPage/Event";
 import PopularEvents from "./components/PopularCityEvents/PopularEvents";
 import Footer from './components/Footer';
 
-import Homepage from './pages/Homepage';
+import HomePage from './pages/HomePage';
 import ProtectedRoute from './pages/ProtectedRoute'
 import EventsPage from "./pages/EventsPage";
 import NotFound from './pages/NotFound'
@@ -31,7 +31,7 @@ const App = () => {
                             <Navbar/>
                             <Switch>
                                 <Route path="/" exact
-                                    render={(render) => (<Homepage {...render}/>
+                                    render={(render) => (<HomePage {...render}/>
                                 )}/>
                                 <Route path="/register" component={RegisterPage}/>
                                 <Route path="/all-events/event/:event" component={Event} />
