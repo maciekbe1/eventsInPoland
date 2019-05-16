@@ -14,6 +14,7 @@ import ProtectedRoute from "./pages/ProtectedRoute";
 import EventsPage from "./pages/EventsPage";
 import NotFound from "./pages/NotFound";
 import RegisterPage from "./pages/RegisterPage";
+import Calendar from "./pages/Calendar";
 
 import Context from "./context";
 import reducer from "./reducer";
@@ -44,6 +45,7 @@ const App = () => {
                                 path="/find-popular/:popularEvents"
                                 component={PopularEvents}
                             />
+                            <Route path="/test-calendar" component={Calendar} />
                             <Route component={NotFound} />
                         </Switch>
                         <Footer />
