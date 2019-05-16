@@ -1,20 +1,20 @@
-import React, { useContext } from 'react'
-import '../assets/styles/eventspage.scss'
+import React, { useContext } from "react";
+import "../assets/styles/eventspage.scss";
 import { Link } from "react-router-dom";
-import { HashLoader } from 'react-spinners';
-import SkeletonRow from '../components/Skeletons/SkeletonRow'
+import { HashLoader } from "react-spinners";
+import SkeletonRow from "../components/skeletons/SkeletonRow";
 // import GlobalState from '../context/global-context';
 
 // class EventsPage extends Component {
 //     static contextType = GlobalState;
-// 
+//
 //     state = {
 //         search: "",
 //     };
 //     onChange = e => {
 //         this.setState({search: e.target.value})
 //     };
-// 
+//
 //     componentWillMount(props) {
 //         if (this.props.location.state !== undefined) {
 //             this.setState({search: this.props.location.state});
@@ -44,7 +44,7 @@ import SkeletonRow from '../components/Skeletons/SkeletonRow'
 //             const filtered = filteredItems.filter(item => {
 //                 return item.nazwa.value.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
 //             });
-// 
+//
 //             content = filtered.map((item, index) => {
 //                     return (
 //                         <div key={index} className="event-row row">
@@ -62,7 +62,7 @@ import SkeletonRow from '../components/Skeletons/SkeletonRow'
 //                     )
 //             })
 //         }
-// 
+//
 //         return(
 //             <div>
 //                 <nav aria-label="breadcrumb">
@@ -73,7 +73,7 @@ import SkeletonRow from '../components/Skeletons/SkeletonRow'
 //                         </div>
 //                     </ol>
 //                 </nav>
-// 
+//
 //                 <div className="container events-page">
 //                     <div className="event-banner d-flex align-items-end">
 //                         <div className="event-search d-flex align-items-center justify-content-center">
@@ -91,12 +91,8 @@ import SkeletonRow from '../components/Skeletons/SkeletonRow'
 //     }
 // }
 
-const EventsPage = (props) => {
-    
-    return (
-        <div>
-        </div>
-    )
-}
+const EventsPage = props => {
+    return <div />;
+};
 
 export default EventsPage;
