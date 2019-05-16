@@ -1,53 +1,55 @@
-import React, {Component} from "react";
+import React, { useState, useContext } from "react";
 import { Link } from 'react-router-dom';
-import GlobalState from "../context/global-context";
+import Context from "../../context";
+import eventsName from '../../database/eventsName.json';
+// const eventsName = ["abc", "bcasd"]
 
-class Autocomplete extends Component {
-    static contextType = GlobalState;
-
-    state = {
-        suggestions: [],
-        search: "",
-    };
-
-    findClinicOnChange = e => {
+const Autocomplete = () => {
+    
+    const context = useContext(Context)
+    const { dispatch } = useContext(Context)
+    
+    const findEventOnChange = e => {
         const value = e.target.value;
         let suggestions = [];
-        this.setState({search: value});
+        dispatch({type: "SEARCH_EVENT_BY_NAME", payload: value})
         if (value.length > 0) {
            const regexp = new RegExp(`${value}`, 'i');
-           suggestions = this.context.premiumClinicsName.sort().filter(v => regexp.test(v))
+           suggestions = eventsName.sort().filter(v => regexp.test(v))
         }
-        this.setState({suggestions: suggestions})
+        dispatch({type: "EVENT_SUGGESTIONS", payload: suggestions})
     };
 
-    suggestionSelected(value) {
-        this.setState({search: value, suggestions: []})
+    const suggestionSelected = (value) => {
+        // this.setState({search: value, suggestions: []})
+        dispatch({type: "SEARCH_EVENT_BY_NAME", payload: value})
+        dispatch({type: "EVENT_SUGGESTIONS", payload: []})
     }
 
-    renderSuggestion = () => {
-        const { suggestions } = this.state;
-        if (suggestions.length === 0) {
+    const renderSuggestion = () => {
+        const { suggestionsEventList } = context.state;
+        if (suggestionsEventList.length === 0) {
             return null;
         } else {
             return (
-                <ul className="col-sm-10 clinics-search-list">{suggestions.map((item, index) => {
-                    return <li onClick={() => this.suggestionSelected(item)} key={index}>{item}</li>
+                <ul className="col-sm-10 events-search-list">{suggestionsEventList.map((item, index) => {
+                    return <li onClick={() => suggestionSelected(item)} key={index}>{item}</li>
                 })}</ul>
             )
         }
     };
-
-    render() {
-        return(
-            <div className="d-flex">
-                <div className="w-100">
-                    <input value={this.state.search} onChange={this.findClinicOnChange} type="text" className="form-control" placeholder="find a clinic" />
-                    {this.renderSuggestion()}
-                </div>
-                <Link to={{ pathname: '/all-clinics', state: this.state.search }} className="btn btn-primary find-clinics">Search</Link>
+    return (
+        <div className="d-flex">
+            <div className="w-100">
+                <input value={context.state.searchEventByName} onChange={findEventOnChange} type="text" className="form-control" placeholder="find event" />
+                {renderSuggestion()}
             </div>
-        )
-    }
+            <Link to={{ pathname: '/all-events', state: {
+                eventName: context.state.searchEventByName,
+                eventStart: context.state.startEventDate,
+                eventEnd: context.state.endEventDate
+            } }} className="btn btn-primary find-events">Search</Link>
+        </div>
+    )
 }
 export default Autocomplete;

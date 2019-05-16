@@ -1,0 +1,50 @@
+[
+    {
+        "city": "Warsaw",
+        "type": "warsaw",
+        "img": "warsaw.jpeg",
+        "description": "Warsaw description"
+    },
+    {
+        "city": "Wroclaw",
+        "type": "wroclaw",
+        "img": "wroclaw.jpeg",
+        "description": "Wroclaw Description"
+    },
+    {
+        "city": "Gdansk",
+        "type": "gdansk",
+        "img": "gdansk.jpeg",
+        "description": "Gdansk description"
+    },
+    {
+        "city": "Poznan",
+        "type": "poznan",
+        "img": "poznan.jpeg",
+        "description": "Gdansk description"
+    },
+    {
+        "city": "Cracow",
+        "type": "cracow",
+        "img": "cracow.jpeg",
+        "description": "Cracow description"
+    },
+    {
+        "city": "Lodz",
+        "type": "lodz",
+        "img": "lodz.jpeg",
+        "description": "Lodz description"
+    },
+    {
+        "city": "Torun",
+        "type": "torun",
+        "img": "torun.jpeg",
+        "description": "Torun description"
+    },
+    {
+        "city": "Katowice",
+        "type": "katowice",
+        "img": "katowice.jpeg",
+        "description": "Katowice description"
+    }
+]

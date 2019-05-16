@@ -4,7 +4,7 @@ import axios from 'axios'
 class Test extends React.Component {
 
     componentDidMount() {
-        const get = `https://qang.bpower2.com/index.php/restApi/gwipClinics`;
+        const get = `https://qang.bpower2.com/index.php/restApi/gwip-events`;
         const post = 'https://qang.bpower2.com/index.php/restApi/generateJWT';
         const userData = "YWRtaW46ODVmZDdjODg5ZjcxY2YxMDUzNzU1OTVjZGRjMDZiOWQzOGZjNTYyY2I2OWM1NGY4YzE2NWFhNzUxZDgxYjNkOQ==";
         axios.get(get).then(res => {

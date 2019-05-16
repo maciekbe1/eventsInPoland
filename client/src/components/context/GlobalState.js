@@ -3,44 +3,44 @@ import axios from 'axios';
 import GlobalContext from './global-context';
 
 const GlobalState = props => {
-    // const [clinicsDetails, setClinicsDetails] = useState([])
-    // const [clinicsName, setClinicsName] = useState([])
-    const [premiumClinics, setPremiumClinics] = useState([])
-    const [premiumClinicsName, setPremiumClinicsName] = useState([])
+    // const [eventsDetails, seteventsDetails] = useState([])
+    // const [eventsName, seteventsName] = useState([])
+    const [premiumevents, setPremiumevents] = useState([])
+    const [premiumeventsName, setPremiumeventsName] = useState([])
     // const [content, setContent] = useState([])
 
     useEffect(() => {
-        // axios.get('https://qang.bpower2.com/index.php/restApi/gwipClinics')
+        // axios.get('https://qang.bpower2.com/index.php/restApi/gwipevents')
         // .then(res => {
-        //     setClinicsName(res.data)
+        //     seteventsName(res.data)
         // })
-        axios.get('https://qang.bpower2.com/index.php/restApi/gwipClinics?details=true')
+        axios.get('https://qang.bpower2.com/index.php/restApi/gwip-events?details=true')
         .then(res => {
-            let arrPremiumClinics = []
-            let arrPremiumClinicsName = []
-            res.data.forEach( clinic => {
-                if(clinic["klientdata_businesstype21306_c2abvm"].value === "1"){
-                    arrPremiumClinics.push(clinic)
-                    arrPremiumClinicsName.push(clinic.nazwa.value)
+            let arrPremiumevents = []
+            let arrPremiumeventsName = []
+            res.data.forEach( event => {
+                if(event["klientdata_businesstype21306_c2abvm"].value === "1"){
+                    arrPremiumevents.push(event)
+                    arrPremiumeventsName.push(event.nazwa.value)
                 }
             })
             return (
-                // setClinicsDetails(res.data),
-                setPremiumClinics(arrPremiumClinics),
-                setPremiumClinicsName(arrPremiumClinicsName)
+                // seteventsDetails(res.data),
+                setPremiumevents(arrPremiumevents),
+                setPremiumeventsName(arrPremiumeventsName)
             )
         })
     }, [])
 
-    // console.log(premiumClinics, clinicsDetails);
+    // console.log(premiumevents, eventsDetails);
 
 
     return(
         <GlobalContext.Provider
             value={{
-                // clinicsDetails,
-                premiumClinics,
-                premiumClinicsName
+                // eventsDetails,
+                premiumevents,
+                premiumeventsName
             }}
         >
         {props.children}

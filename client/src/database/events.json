@@ -1,0 +1,66 @@
+[
+    {
+        "id": "1",
+        "city": "Gdansk",
+        "name": "Jarmark Dominikanski",
+        "street": "stare miasto",
+        "duration": {
+            "eventStart": "10/06/2019",
+            "eventEnd": "15/07/2019"
+        },
+        "description": "Biggest event in Gdansk",
+        "photos": [
+            {"1": "gdansk.jpeg"},
+            {"2": "gdansk.jpeg"},
+            {"3": "gdansk.jpeg"}
+        ]
+    },
+    {
+        "id": "2",
+        "city": "Wrocław",
+        "name": "Jarmark Bożonarodzeniowy",
+        "street": "Rynek",
+        "duration": {
+            "eventStart": "10/12/2019",
+            "eventEnd": "1/02/2020"
+        },
+        "description": "Bedzie dużo różnych różności",
+        "photos": [
+            {"1": "wroclaw.jpeg"},
+            {"2": "wroclaw.jpeg"},
+            {"3": "wroclaw.jpeg"}
+        ]
+    },
+    {
+        "id": "3",
+        "city": "Katowice",
+        "name": "IEM 2019",
+        "street": "Katowicki spodek",
+        "duration": {
+            "eventStart": "1/07/2019",
+            "eventEnd": "3/07/2019"
+        },
+        "description": "Impreza sponsorowana przez intel",
+        "photos": [
+            {"1": "katowice.jpeg"},
+            {"2": "katowice.jpeg"},
+            {"3": "katowice.jpeg"}
+        ]
+    },
+    {
+        "id": "4",
+        "city": "Warszawa",
+        "name": "Koncert - Dawid Podsiadło",
+        "street": "Torwar",
+        "duration": {
+            "eventStart": "10/07/2019",
+            "eventEnd": "10/07/2019"
+        },
+        "description": "Bedzie spiewane i grane",
+        "photos": [
+            {"1": "warszawa.jpeg"},
+            {"2": "warszawa.jpeg"},
+            {"3": "warszawa.jpeg"}
+        ]
+    }
+]

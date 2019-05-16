@@ -4,7 +4,7 @@ import { getToken } from '../../api/api'
 import AuthContext from './auth-context'
 import axios from 'axios'
 
-class AuthProvider extends React.Component {
+class AuthProvider = () => {
     state = {
         isAuth: false,
         login: null,
