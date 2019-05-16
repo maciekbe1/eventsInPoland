@@ -57,11 +57,7 @@ const Navbar = () => {
                                         : null
                                 }
                             </li>
-                            {
-                                context.state.isAuth
-                                    ? <li><Link className="nav-link" to="/all-events">Events</Link></li>
-                                    : null
-                            }
+                            <li><Link className="nav-link" to="/all-events">Events</Link></li>
                             <li className="nav-item">
                                 {
                                     !context.state.isAuth

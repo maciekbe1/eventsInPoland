@@ -6,7 +6,7 @@ import { sha256 } from "js-sha256";
 import success from "../assets/images/checked.png";
 import "../assets/styles/registerpage.scss";
 
-import Input from "../components/skeletons/Input";
+import Input from "../components/Skeletons/Input";
 
 const RegisterPage = props => {
     const [postMessage, setPostMessage] = useState({});

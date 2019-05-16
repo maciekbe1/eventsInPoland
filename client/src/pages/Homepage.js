@@ -1,9 +1,9 @@
 import React from "react";
-import Jumbotron from "../components/homepage/Jumbotron";
-import FindPopularEvent from "../components/homepage/FindPopularEvent";
-import Destination from "../components/homepage/Destination";
+import Jumbotron from "../components/HomePage/Jumbotron";
+import FindPopularEvent from "../components/HomePage/FindPopularEvent";
+import Destination from "../components/HomePage/Destination";
 import "../assets/styles/homepage.scss";
-import LatestEvents from "../components/homepage/LatestEvents";
+import LatestEvents from "../components/HomePage/LatestEvents";
 
 const HomePage = () => {
     return (

@@ -1,6 +1,6 @@
 import React from 'react'
-import events from '../../database/events'
-import popularCityEvents from '../../database/popularCityEvents'
+// import events from '../../database/events'
+// import popularCityEvents from '../../database/popularCityEvents'
 import '../../assets/styles/eventspage.scss'
 import { Link } from 'react-router-dom'
 // import slugify from "@sindresorhus/slugify"

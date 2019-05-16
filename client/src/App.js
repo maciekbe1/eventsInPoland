@@ -4,12 +4,12 @@ import { withCookies } from "react-cookie";
 
 import "./assets/styles/app.scss";
 
-import Navbar from "./components/navbar";
-import Event from "./components/eventspage/Event";
-import PopularEvents from "./components/popularCityEvents/PopularEvents";
+import Navbar from "./components/Navbar";
+import Event from "./components/EventsPage/Event";
+import PopularEvents from "./components/PopularCityEvents/PopularEvents";
 import Footer from "./components/Footer";
 
-import HomePage from "./pages/Homepage";
+import HomePage from "./pages/HomePage";
 import ProtectedRoute from "./pages/ProtectedRoute";
 import EventsPage from "./pages/EventsPage";
 import NotFound from "./pages/NotFound";

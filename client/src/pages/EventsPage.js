@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import "../assets/styles/eventspage.scss";
 import { Link } from "react-router-dom";
 import { HashLoader } from "react-spinners";
-import SkeletonRow from "../components/skeletons/SkeletonRow";
+import SkeletonRow from "../components/Skeletons/SkeletonRow";
 // import GlobalState from '../context/global-context';
 
 // class EventsPage extends Component {
@@ -92,7 +92,29 @@ import SkeletonRow from "../components/skeletons/SkeletonRow";
 // }
 
 const EventsPage = props => {
-    return <div />;
+    return (
+        <div>
+           <nav aria-label="breadcrumb">
+               <ol className="breadcrumb">
+                   <div className="container d-flex flex-wrap">
+                       <li className="breadcrumb-item"><Link to="/">Home</Link></li>
+                       <li className="breadcrumb-item active" aria-current="page">All events</li>
+                   </div>
+               </ol>
+           </nav>
+           <div className="container events-page">
+               <div className="event-banner d-flex align-items-end">
+                   <div className="event-search d-flex align-items-center justify-content-center">
+                       <div className="col-sm-5 text-center">
+                           <h2>Help me find a events</h2>
+                       </div>
+                   </div>
+               </div>
+               <h1>List of events</h1>
+               {/*content*/}
+           </div>
+       </div>
+    );
 };
 
 export default EventsPage;
