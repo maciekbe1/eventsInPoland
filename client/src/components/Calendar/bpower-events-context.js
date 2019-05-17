@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { getToken } from "../../api/api";
+import axios from "axios";
+import moment from "moment";
 
 export const BpowerEvents = React.createContext();
 // kontekst do usunięcia po wprowadzeniu danych z bp przeniesienie koniguracji do CalendarConfig
@@ -22,61 +25,28 @@ const BpowerEventsStore = props => {
     });
 
     useEffect(() => {
-        fetch(
-            `https://content.googleapis.com/calendar/v3/calendars/4neq3fml6jsi84ea7gmfnfqtt8@group.calendar.google.com/events?key=AIzaSyDeLoAUSL4bt11qgzmyWhYZuClsvgZMoCc`
-        )
-            .then(res => res.json())
-            .then(res => {
+        getToken(process.env.REACT_APP_USER_DATA_KEY).then(res => {
+            axios({
+                method: "get",
+                url: process.env.REACT_APP_EVENTS,
+                headers: {
+                    Authorization: res.data.token
+                }
+            }).then(res => {
                 const arr = [];
-                res.items.map(item => {
-                    if (item.start.date) {
-                        arr.push({
-                            id: item.id,
-                            start: convertDate(item.start.date, null),
-                            end: convertDate(null, item.end.date),
-                            title: item.summary
-                        });
-                    } else {
-                        arr.push({
-                            id: item.id,
-                            start: convertDate(item.start.dateTime),
-                            end: convertDate(item.end.dateTime),
-                            title: item.summary
-                        });
-                    }
+                res.data.data.objects.map(event => {
+                    arr.push({
+                        id: event.id,
+                        title: event.title,
+                        start: moment(event.from_date)._d,
+                        end: moment(event.to_date)._d
+                    });
                     return null;
                 });
                 setEvents(arr);
             });
+        });
     }, []);
-
-    const convertDate = (start, end) => {
-        const date = new Date(start ? start : end);
-        const year = date.getFullYear();
-        const month = date.getMonth();
-        let day = null;
-        if (start) {
-            day = date.getDate();
-        } else {
-            day = date.getDate() - 1;
-        }
-        const hours = date.getHours();
-        const minutes = date.getMinutes();
-        const seconds = date.getSeconds();
-        const miliseconds = date.getMilliseconds();
-
-        const newDate = new Date(
-            year,
-            month,
-            day,
-            hours,
-            minutes,
-            seconds,
-            miliseconds
-        );
-
-        return newDate;
-    };
 
     return (
         <BpowerEvents.Provider value={{ messages, events }}>
