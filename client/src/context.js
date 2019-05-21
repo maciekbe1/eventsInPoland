@@ -1,5 +1,5 @@
 import { createContext } from 'react'
-import events from './database/events.json'
+// import events from './database/events.json'
 
 const Context = createContext({
     isAuth: false,
@@ -8,7 +8,8 @@ const Context = createContext({
     token: null,
     currentUser: null,
     loading: false,
-    events: events,
+    events: [],
+    eventsTitle: [],
     loginFailure: false,
     suggestionsEventList: [],
     searchEventByName: "",

@@ -46,6 +46,16 @@ export default function reducer(state, { type, payload }) {
                 ...state,
                 password: payload
             }
+        case "GET_EVENTS":
+            return {
+                ...state,
+                events: payload
+            }
+        case "EVENTS_TITLE":
+            return  {
+                ...state,
+                eventsTitle: payload
+            };
         case "SEARCH_EVENT_BY_NAME":
             return {
                 ...state,

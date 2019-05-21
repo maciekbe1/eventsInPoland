@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import "../assets/styles/eventspage.scss";
 import { Link } from "react-router-dom";
-import { HashLoader } from "react-spinners";
-import SkeletonRow from "../components/Skeletons/SkeletonRow";
+import { getToken } from "../api/api";
+import axios from "axios";
+import Context from "../context";
 // import GlobalState from '../context/global-context';
 
 // class EventsPage extends Component {
@@ -92,28 +93,66 @@ import SkeletonRow from "../components/Skeletons/SkeletonRow";
 // }
 
 const EventsPage = props => {
+    const context = useContext(Context);
+    const { dispatch } = useContext(Context);
+
+    useEffect(() => {
+        getToken(process.env.REACT_APP_USER_DATA_KEY).then(res => {
+            let arrOfEvent = [];
+            axios({
+                method: "get",
+                url: process.env.REACT_APP_EVENTS,
+                headers: {
+                    Authorization: res.data.token
+                }
+            })
+                .then(res => {
+                    res.data.data.objects.map(event => {
+                        arrOfEvent.push(event);
+                        return null;
+                    });
+                    dispatch({ type: "GET_EVENTS", payload: arrOfEvent });
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        });
+    }, []);
     return (
         <div>
-           <nav aria-label="breadcrumb">
-               <ol className="breadcrumb">
-                   <div className="container d-flex flex-wrap">
-                       <li className="breadcrumb-item"><Link to="/">Home</Link></li>
-                       <li className="breadcrumb-item active" aria-current="page">All events</li>
-                   </div>
-               </ol>
-           </nav>
-           <div className="container events-page">
-               <div className="event-banner d-flex align-items-end">
-                   <div className="event-search d-flex align-items-center justify-content-center">
-                       <div className="col-sm-5 text-center">
-                           <h2>Help me find a events</h2>
-                       </div>
-                   </div>
-               </div>
-               <h1>List of events</h1>
-               {/*content*/}
-           </div>
-       </div>
+            <nav aria-label="breadcrumb">
+                <ol className="breadcrumb">
+                    <div className="container d-flex flex-wrap">
+                        <li className="breadcrumb-item">
+                            <Link to="/">Home</Link>
+                        </li>
+                        <li
+                            className="breadcrumb-item active"
+                            aria-current="page"
+                        >
+                            All events
+                        </li>
+                    </div>
+                </ol>
+            </nav>
+            <div className="container events-page">
+                <div className="event-banner d-flex align-items-end">
+                    <div className="event-search d-flex align-items-center justify-content-center">
+                        <div className="col-sm-5 text-center">
+                            <h2>Help me find a events</h2>
+                        </div>
+                    </div>
+                </div>
+                <h1>List of events</h1>
+                {context.state.events ? (
+                    context.state.events.map((event, index) => {
+                        return <p key={index}>{event.title}</p>;
+                    })
+                ) : (
+                    <div>Brak</div>
+                )}
+            </div>
+        </div>
     );
 };
 
