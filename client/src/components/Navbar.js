@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import "../assets/styles/navbar.scss";
+import logo from "../assets/images/logo/logo.png";
 
 import Signin from "./Auth/Signin";
 import Context from "../context";
@@ -12,9 +13,6 @@ const Navbar = () => {
         dispatch({
             type: "SIGNOUT_USER",
             payload: {
-                login: null,
-                password: null,
-                token: null,
                 isAuth: false,
                 currentUser: null
             }
@@ -24,11 +22,10 @@ const Navbar = () => {
     };
     return (
         <div className="nav-bar container-fluid">
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <nav className="navbar navbar-expand-lg navbar-light">
                 <div className="container">
                     <Link className="navbar-brand" to="/">
-                        {/*<img src={logo} alt="logo"/>*/}
-                        <h2>Events in Poland</h2>
+                        <img src={logo} alt="logo" />
                     </Link>
                     <div className="any-questions" />
                     <div className="nav-btn text-center">
@@ -70,6 +67,20 @@ const Navbar = () => {
                                     Contact
                                 </Link>
                             </li>
+                            <li>
+                                <Link
+                                    className="nav-link"
+                                    to="/all-events"
+                                    onClick={() =>
+                                        dispatch({
+                                            type: "SEARCH_EVENT_BY_NAME",
+                                            payload: ""
+                                        })
+                                    }
+                                >
+                                    Events
+                                </Link>
+                            </li>
                             <li className="nav-item">
                                 {context.state.isAuth ? (
                                     <a
@@ -83,11 +94,6 @@ const Navbar = () => {
                                         </span>
                                     </a>
                                 ) : null}
-                            </li>
-                            <li>
-                                <Link className="nav-link" to="/all-events">
-                                    Events
-                                </Link>
                             </li>
                             <li className="nav-item">
                                 {!context.state.isAuth ? (

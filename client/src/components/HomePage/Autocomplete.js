@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Context from "../../context";
 import axios from "axios";
@@ -6,7 +6,7 @@ import axios from "axios";
 const Autocomplete = () => {
     const context = useContext(Context);
     const { dispatch } = useContext(Context);
-
+    const [suggestionsEventList, setSuggestionsEventList] = useState([]);
     const findEventOnChange = e => {
         axios
             .get(
@@ -27,18 +27,15 @@ const Autocomplete = () => {
                     .filter(v => regexp.test(v));
             }
         }
-        dispatch({ type: "EVENT_SUGGESTIONS", payload: suggestions });
+        setSuggestionsEventList(suggestions);
     };
 
     const suggestionSelected = value => {
         dispatch({ type: "SEARCH_EVENT_BY_NAME", payload: value });
-        dispatch({ type: "EVENT_SUGGESTIONS", payload: [] });
+        setSuggestionsEventList([]);
     };
-    useEffect(() => {
-        return () => {};
-    }, []);
+
     const renderSuggestion = () => {
-        const { suggestionsEventList } = context.state;
         if (suggestionsEventList.length === 0) {
             return null;
         } else {
@@ -57,6 +54,9 @@ const Autocomplete = () => {
                 </ul>
             );
         }
+    };
+    const suggestionsClear = () => {
+        setSuggestionsEventList([]);
     };
     return (
         <div className="d-flex">
@@ -80,6 +80,7 @@ const Autocomplete = () => {
                     }
                 }}
                 className="btn btn-primary find-events"
+                onClick={suggestionsClear}
             >
                 Search
             </Link>

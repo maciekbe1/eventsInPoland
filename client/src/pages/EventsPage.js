@@ -57,7 +57,11 @@ const EventsPage = props => {
 
             const date = start === end ? start : start + " - " + end;
             return (
-                <div className="col-md-4 col-sm-6 event-block" key={index}>
+                <Link
+                    className="col-md-4 col-sm-6 event-block"
+                    key={index}
+                    to={`/all-events/event/${event.id}`}
+                >
                     <img
                         src={`http://via.placeholder.com/450x300?text=${
                             event.title
@@ -66,11 +70,13 @@ const EventsPage = props => {
                     />
                     <p>{event.title}</p>
                     <p>{date}</p>
-                </div>
+                </Link>
             );
         });
+
         setContent(content);
-    }, [context.state.events]);
+    }, [context.state.events, context.state.searchEventByName]);
+
     const dateConverter = (start, end) => {
         if (start) {
             const date = new Date(start);
@@ -109,14 +115,13 @@ const EventsPage = props => {
                 </ol>
             </nav>
             <div className="container events-page">
-                <div className="event-banner d-flex align-items-end">
+                <div className="event-banner d-flex align-items-end mb-5">
                     <div className="event-search d-flex align-items-center justify-content-center">
                         <div className="col-sm-5 text-center">
-                            <h2>Help me find a events</h2>
+                            <h1>List of events</h1>
                         </div>
                     </div>
                 </div>
-                <h1>List of events</h1>
                 <div className="container">
                     <div className="row">{content}</div>
                 </div>

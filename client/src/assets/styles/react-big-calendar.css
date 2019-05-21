@@ -19,7 +19,7 @@ button.rbc-input::-moz-focus-inner {
 .rbc-calendar {
     box-sizing: border-box;
     height: 80vh;
-    width: 80vw;
+    width: 100%;
     margin: 30px auto;
     display: -webkit-flex;
     display: -ms-flexbox;

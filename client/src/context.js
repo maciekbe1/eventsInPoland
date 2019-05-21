@@ -1,20 +1,13 @@
-import { createContext } from 'react'
-// import events from './database/events.json'
+import { createContext } from "react";
 
 const Context = createContext({
     isAuth: false,
-    login: null,
-    password: null,
-    token: null,
     currentUser: null,
-    loading: false,
     events: [],
     eventsTitle: [],
-    loginFailure: false,
-    suggestionsEventList: [],
     searchEventByName: "",
     startEventDate: null,
     endEventDate: null
 });
 
-export default Context
+export default Context;
