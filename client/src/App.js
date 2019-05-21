@@ -10,7 +10,7 @@ import PopularEvents from "./components/PopularCityEvents/PopularEvents";
 import Footer from "./components/Footer";
 
 import HomePage from "./pages/HomePage";
-import ProtectedRoute from "./pages/ProtectedRoute";
+// import ProtectedRoute from "./pages/ProtectedRoute";
 import EventsPage from "./pages/EventsPage";
 import NotFound from "./pages/NotFound";
 import RegisterPage from "./pages/RegisterPage";

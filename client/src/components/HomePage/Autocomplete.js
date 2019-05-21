@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import Context from "../../context";
 import axios from "axios";
@@ -21,8 +21,8 @@ const Autocomplete = () => {
         dispatch({ type: "SEARCH_EVENT_BY_NAME", payload: value });
         if (value.length > 0) {
             const regexp = new RegExp(`${value}`, "i");
-            if (context.eventsTitle) {
-                suggestions = context.eventsTitle
+            if (context.state.eventsTitle) {
+                suggestions = context.state.eventsTitle
                     .sort()
                     .filter(v => regexp.test(v));
             }
@@ -34,7 +34,9 @@ const Autocomplete = () => {
         dispatch({ type: "SEARCH_EVENT_BY_NAME", payload: value });
         dispatch({ type: "EVENT_SUGGESTIONS", payload: [] });
     };
-
+    useEffect(() => {
+        return () => {};
+    }, []);
     const renderSuggestion = () => {
         const { suggestionsEventList } = context.state;
         if (suggestionsEventList.length === 0) {
