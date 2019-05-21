@@ -118,8 +118,30 @@ const EventsPage = props => {
                 });
         });
     }, []);
+
+    const dateConverter = (start, end) => {
+        if (start) {
+            const date = new Date(start);
+            const startDay =
+                date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
+            const startMonth =
+                date.getMonth() < 10 ? `0${date.getMonth()}` : date.getMonth();
+            const startYear = date.getFullYear();
+            return `${startDay}.${startMonth}.${startYear}`;
+        }
+        if (end) {
+            const date = new Date(end);
+            const endDay =
+                date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
+            const endMonth =
+                date.getMonth() < 10 ? `0${date.getMonth()}` : date.getMonth();
+            const endYear = date.getFullYear();
+            return `${endDay}.${endMonth}.${endYear}`;
+        }
+    };
+
     return (
-        <div>
+        <>
             <nav aria-label="breadcrumb">
                 <ol className="breadcrumb">
                     <div className="container d-flex flex-wrap">
@@ -144,15 +166,41 @@ const EventsPage = props => {
                     </div>
                 </div>
                 <h1>List of events</h1>
-                {context.state.events ? (
-                    context.state.events.map((event, index) => {
-                        return <p key={index}>{event.title}</p>;
-                    })
-                ) : (
-                    <div>Brak</div>
-                )}
+                <div className="container">
+                    <div className="row">
+                        {context.state.events
+                            ? context.state.events.map((event, index) => {
+                                  const start = dateConverter(event.from_date);
+                                  const end = dateConverter(
+                                      null,
+                                      event.to_date
+                                  );
+
+                                  const date =
+                                      start === end
+                                          ? start
+                                          : start + " - " + end;
+                                  return (
+                                      <div
+                                          className="col-md-4 col-sm-6 event-block"
+                                          key={index}
+                                      >
+                                          <img
+                                              src={`http://via.placeholder.com/450x300?text=${
+                                                  event.title
+                                              }`}
+                                              alt=""
+                                          />
+                                          <p>{event.title}</p>
+                                          <p>{date}</p>
+                                      </div>
+                                  );
+                              })
+                            : null}
+                    </div>
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 
