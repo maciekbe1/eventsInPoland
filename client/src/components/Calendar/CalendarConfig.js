@@ -6,7 +6,7 @@ import { BpowerEvents } from "./bpower-events-context";
 
 let allViews = Object.keys(BigCalendar.Views).map(k => BigCalendar.Views[k]);
 
-const CalendarConfig = ({ localizer }) => {
+const CalendarConfig = ({ localizer }, props) => {
     const context = useContext(BpowerEvents);
 
     // const handleSelect = ({ start, end }) => {
@@ -24,6 +24,38 @@ const CalendarConfig = ({ localizer }) => {
     //         ]);
     //     }
     // };
+    const redirectCalendar = props => {
+        window.location.assign(`/all-events/event/${props.id}`);
+    };
+
+    const eventTypeColor = (event: Object) => {
+        console.log(event);
+        switch (event.type) {
+            case "30003076":
+                return {
+                    className: "adventures",
+                    style: {
+                        backgroundColor: "orange"
+                    }
+                };
+            case "30003077":
+                return {
+                    className: "motorcycle-tours",
+                    style: {
+                        backgroundColor: "green"
+                    }
+                };
+            case "30003078":
+                return {
+                    className: "hotels",
+                    style: {
+                        backgroundColor: "purple"
+                    }
+                };
+            default:
+                return {};
+        }
+    };
 
     return (
         <BigCalendar
@@ -34,10 +66,11 @@ const CalendarConfig = ({ localizer }) => {
             step={60}
             defaultDate={new Date()}
             localizer={localizer}
-            onSelectEvent={event => alert(event.title)}
+            onSelectEvent={event => redirectCalendar(event)}
             // onSelectSlot={handleSelect} --- odpowiada za dodawnie eventów do kalendarza, potrzebny pros selectable
             messages={context.messages}
             // culture={"pl-PL"}
+            eventPropGetter={eventTypeColor}
         />
     );
 };
