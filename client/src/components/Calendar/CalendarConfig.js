@@ -29,7 +29,7 @@ const CalendarConfig = ({ localizer }, props) => {
     };
 
     const eventTypeColor = (event: Object) => {
-        console.log(event);
+        // console.log(event);
         switch (event.type) {
             case "30003076":
                 return {

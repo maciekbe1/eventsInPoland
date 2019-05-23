@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { getToken } from "../api/api";
 import axios from "axios";
 import Context from "../context";
+import { dateConverter } from "../containers/date";
+import Square from "../components/EventsPage/Squqre";
 
 const EventsPage = props => {
     const context = useContext(Context);
@@ -54,42 +56,36 @@ const EventsPage = props => {
         const content = filtered.map((event, index) => {
             const start = dateConverter(event.from_date);
             const end = dateConverter(event.to_date);
-
             const date = start === end ? start : start + " - " + end;
-            return (
-                <Link
-                    className="col-md-4 col-sm-6 event-block"
-                    key={index}
-                    to={`/all-events/event/${event.id}`}
-                >
-                    <img
-                        src={`http://via.placeholder.com/450x300?text=${
-                            event.title
-                        }`}
-                        alt=""
+            if (dateConverter(context.state.startEventDate) == null) {
+                return (
+                    <Square
+                        key={index}
+                        title={event.title}
+                        date={date}
+                        id={event.id}
                     />
-                    <p>{event.title}</p>
-                    <p>{date}</p>
-                </Link>
-            );
+                );
+            } else if (
+                dateConverter(context.state.startEventDate) <=
+                    dateConverter(event.from_date) &&
+                dateConverter(context.state.endEventDate) >=
+                    dateConverter(event.from_date)
+            ) {
+                return (
+                    <Square
+                        key={index}
+                        title={event.title}
+                        date={date}
+                        id={event.id}
+                    />
+                );
+            }
         });
 
         setContent(content);
     }, [context.state.events, context.state.searchEventByName]);
 
-    const dateConverter = eventDate => {
-        if (eventDate) {
-            const date = new Date(eventDate);
-            const dateDay =
-                date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
-            const dateMonth =
-                date.getMonth() < 10
-                    ? `0${date.getMonth() + 1}`
-                    : date.getMonth();
-            const dateYear = date.getFullYear();
-            return `${dateDay}.${dateMonth}.${dateYear}`;
-        }
-    };
     return (
         <div>
             <nav aria-label="breadcrumb">

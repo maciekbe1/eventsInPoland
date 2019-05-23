@@ -6,6 +6,7 @@
     "@emotion/core": "^10.0.10",
     "@sindresorhus/slugify": "^0.9.1",
     "axios": "^0.18.0",
+    "html-react-parser": "^0.7.0",
     "js-base64": "^2.5.1",
     "js-sha256": "^0.9.0",
     "moment": "^2.24.0",

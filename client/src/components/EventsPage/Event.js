@@ -2,11 +2,47 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { getToken } from "../../api/api";
+import parse from 'html-react-parser';
+import { dateConverter } from "../../containers/date"
 
 const Event = props => {
     const [event, setEvent] = useState();
+    const [image, setImage] =useState()
     useEffect(() => {
         getToken(process.env.REACT_APP_USER_DATA_KEY).then(res => {
+            function getUserAccount() {
+                axios({
+                    method: "get",
+                    url: `https://b2ng.bpower2.com/index.php/restApi/request/model/SzanseSprzedazy/params/{"pipeline":13, "id": ${
+                        props.match.params.event
+                    }}`,
+                    headers: {
+                        Authorization: res.data.token
+                    }
+                });
+            }
+ 
+            function getUserPermissions() {
+                return axios({
+                    method: "get",
+                    url: `https://b2ng.bpower2.com/index.php/restApi/request/model/SzanseSprzedazyDane/params/{"spd_id_sp": ${
+                        props.match.params.event
+                    }}`,
+                    headers: {
+                        Authorization: res.data.token
+                    }
+                });
+            }
+            axios.all([getUserAccount(), getUserPermissions()]).then(
+                axios.spread(function(acct, perms) {
+                    perms.data.data.objects.map(item => {
+                        if (item.text_value.indexOf("<img") === 0) {
+                            setImage(item.text_value)
+                        }
+                        return null
+                    });
+                })
+            );
             axios({
                 method: "get",
                 url: `https://b2ng.bpower2.com/index.php/restApi/request/model/SzanseSprzedazy/params/{"pipeline":13, "id": ${
@@ -24,27 +60,7 @@ const Event = props => {
                 });
         });
     }, []);
-    console.log(event);
-    const dateConverter = (start, end) => {
-        if (start) {
-            const date = new Date(start);
-            const startDay =
-                date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
-            const startMonth =
-                date.getMonth() < 10 ? `0${date.getMonth()}` : date.getMonth();
-            const startYear = date.getFullYear();
-            return `${startDay}.${startMonth}.${startYear}`;
-        }
-        if (end) {
-            const date = new Date(end);
-            const endDay =
-                date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
-            const endMonth =
-                date.getMonth() < 10 ? `0${date.getMonth()}` : date.getMonth();
-            const endYear = date.getFullYear();
-            return `${endDay}.${endMonth}.${endYear}`;
-        }
-    };
+
     let content = "";
     if (event) {
         content = (
@@ -52,6 +68,7 @@ const Event = props => {
                 <h2>{event.title}</h2>
                 <p>date start: {dateConverter(event.from_date)}</p>
                 <p>date end: {dateConverter(event.to_date)}</p>
+                <div className="mw-100 event-image">{parse(`${image}`)}</div>
             </div>
         );
     } else {

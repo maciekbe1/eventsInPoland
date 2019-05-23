@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Context from "../../context";
 import axios from "axios";
 
-const Autocomplete = () => {
+const Autocomplete = props => {
     const context = useContext(Context);
     const { dispatch } = useContext(Context);
     const [suggestionsEventList, setSuggestionsEventList] = useState([]);
@@ -55,7 +55,11 @@ const Autocomplete = () => {
             );
         }
     };
-    const suggestionsClear = () => {
+    const suggestionsClear = e => {
+        if (context.state.startEventDate && !context.state.endEventDate) {
+            e.preventDefault();
+            props.valid();
+        }
         setSuggestionsEventList([]);
     };
     return (
