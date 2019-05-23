@@ -39,7 +39,8 @@ const BpowerEventsStore = props => {
                         id: event.id,
                         title: event.title,
                         start: moment(event.from_date)._d,
-                        end: moment(event.to_date)._d
+                        end: moment(event.to_date)._d,
+                        type: event.type
                     });
                     return null;
                 });
