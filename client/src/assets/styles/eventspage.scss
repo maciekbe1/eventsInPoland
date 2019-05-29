@@ -36,8 +36,11 @@
         }
         img {
             width: 100%;
+            height: 200px;
             margin-bottom: 10px;
             transition: 0.4s;
+            object-fit: cover;
+            object-position: center;
         }
         &:hover {
             img {
@@ -52,5 +55,57 @@
         padding: 20px;
         background-color: $btn-dark-color;
         color: #fff;
+    }
+
+    .event-image img {
+        width: 100%;
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .event-image {
+        margin-top: 30px;
+        position: relative;
+        .image-content {
+            position: absolute;
+            bottom: 5%;
+            right: 10%;
+            color: white;
+            font-weight: bold;
+            text-align: right;
+            h2 {
+                max-width: 300px;
+            }
+        }
+    }
+    .event-details {
+        margin-top: 30px;
+        padding: 20px;
+        background: #f4f4f4;
+        p {
+            margin: 0;
+        }
+        h3 {
+            font-weight: bold;
+            padding: 10px 0;
+        }
+        .details {
+            display: flex;
+            flex-direction: column;
+            .detail {
+                display: flex;
+                margin-top: 15px;
+            }
+            i {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 50px;
+                margin-right: 15px;
+                color: $btn-color;
+            }
+        }
     }
 }
