@@ -17,15 +17,14 @@ const EventsPage = props => {
             let arrOfEvent = [];
             axios({
                 method: "get",
-                url: process.env.REACT_APP_EVENTS,
+                url: process.env.REACT_APP_EVENTS_DETAILS,
                 headers: {
                     Authorization: res.data.token
                 }
             })
                 .then(res => {
-                    res.data.data.objects.map(event => {
-                        arrOfEvent.push(event);
-                        return null;
+                    res.data.map(event => {
+                        return arrOfEvent.push(event);
                     });
                     dispatch({ type: "GET_EVENTS", payload: arrOfEvent });
                 })
@@ -45,25 +44,29 @@ const EventsPage = props => {
 
     useEffect(() => {
         let filteredItems = context.state.events;
+
+        console.log(filteredItems);
         const filtered = filteredItems.filter(item => {
             return (
-                item.title
+                item.event.title
                     .toLowerCase()
                     .indexOf(context.state.searchEventByName.toLowerCase()) !==
                 -1
             );
         });
         const content = filtered.map((event, index) => {
-            const start = dateConverter(event.from_date);
-            const end = dateConverter(event.to_date);
+            console.log(event);
+            const start = dateConverter(event.event.from_date);
+            const end = dateConverter(event.event.to_date);
             const date = start === end ? start : start + " - " + end;
             if (dateConverter(context.state.startEventDate) == null) {
                 return (
                     <Square
                         key={index}
-                        title={event.title}
+                        title={event.event.title}
                         date={date}
-                        id={event.id}
+                        id={event.event.id}
+                        img={event.eventDetails}
                     />
                 );
             } else if (
@@ -75,11 +78,14 @@ const EventsPage = props => {
                 return (
                     <Square
                         key={index}
-                        title={event.title}
+                        title={event.event.title}
                         date={date}
-                        id={event.id}
+                        id={event.event.id}
+                        img={event.eventDetails}
                     />
                 );
+            } else {
+                return <div>No search results</div>;
             }
         });
 

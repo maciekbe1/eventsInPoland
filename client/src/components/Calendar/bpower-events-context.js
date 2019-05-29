@@ -35,13 +35,16 @@ const BpowerEventsStore = props => {
             }).then(res => {
                 const arr = [];
                 res.data.data.objects.map(event => {
-                    arr.push({
-                        id: event.id,
-                        title: event.title,
-                        start: moment(event.from_date)._d,
-                        end: moment(event.to_date)._d,
-                        type: event.type
-                    });
+                    if (event.stage_id !== "56") {
+                        arr.push({
+                            id: event.id,
+                            title: event.title,
+                            start: moment(event.from_date)._d,
+                            end: moment(event.to_date)._d,
+                            type: event.type
+                        });
+                    }
+
                     return null;
                 });
                 setEvents(arr);

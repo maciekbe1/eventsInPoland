@@ -1,0 +1,13 @@
+.contact-page {
+    .contact-banner {
+        background: url("../images/contact.jpg") center no-repeat;
+        background-size: cover;
+        height: 300px;
+        .contact-search {
+            background-color: rgba(24, 51, 78, 0.9);
+            width: 100%;
+            height: 100px;
+            color: #cef2ec;
+        }
+    }
+}

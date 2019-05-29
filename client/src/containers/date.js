@@ -4,9 +4,7 @@ export const dateConverter = eventDate => {
         const dateDay =
             date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
         const dateMonth =
-            date.getMonth() < 10
-                ? `0${date.getMonth() + 1}`
-                : date.getMonth();
+            date.getMonth() < 10 ? `0${date.getMonth() + 1}` : date.getMonth();
         const dateYear = date.getFullYear();
         return `${dateDay}.${dateMonth}.${dateYear}`;
     }

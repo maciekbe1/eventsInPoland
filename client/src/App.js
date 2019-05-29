@@ -18,6 +18,7 @@ import Calendar from "./pages/Calendar";
 
 import Context from "./context";
 import reducer from "./reducer";
+import Contact from "./components/Contact/Contact";
 
 const App = () => {
     const initialState = useContext(Context);
@@ -36,6 +37,7 @@ const App = () => {
                                 render={render => <HomePage {...render} />}
                             />
                             <Route path="/register" component={RegisterPage} />
+                            <Route path="/contact" component={Contact} />
                             <Route
                                 path="/all-events/event/:event"
                                 component={Event}

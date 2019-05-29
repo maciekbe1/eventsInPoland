@@ -1,114 +1,114 @@
-@import './colors';
-$transition: .3s;
+@import "./colors";
+$transition: 0.3s;
 
 .nav-bar {
-  position: relative;
-  padding: 0;
-  nav {
-    img {
-      max-width: 200px;
-    }
-    .any-questions {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      i {
-        color: #dddddd;
-        padding: 15px;
-      }
-      p {
-        margin: 0;
-        font-size: 12px;
-        color: #aaa;
-      }
-    }
-  }
-  .dropdown {
-    position: unset;
-  }
-  .navbar-nav {
-    @media (max-width: 992px) {
-      justify-content: center;
-      align-items: center;
-    }
-  }
-  .navbar-collapse {
-    flex-direction: column;
-  }
-  .logged-as-name {
-    color: #000 !important;
-  }
-  .dropdown-menu {
-    border-radius: 0;
-    border: 0;
-    margin: 0;
-    min-height: 70px;
-    .container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-    }
-    ul {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      li {
-        padding: 0 25px;
-        margin: 10px 0;
-        border-right: 1px solid grey;
-        &:last-of-type {
-          border: none;
+    position: relative;
+    padding: 0;
+    nav {
+        img {
+            max-width: 200px;
         }
-        a {
-          color: grey;
-          font-size: .9rem;
+        .any-questions {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            i {
+                color: #dddddd;
+                padding: 15px;
+            }
+            p {
+                margin: 0;
+                font-size: 12px;
+                color: #aaa;
+            }
         }
-      }
     }
-  }
-  .language-dropdown-menu {
-    li {
-      text-transform: uppercase;
-      font-size: .75rem;
-      color: grey;
+    .dropdown {
+        position: unset;
     }
-    select {
-      font-size: 1rem;
-      border: 1px solid #ccc;
-      padding-top: 0;
-      height: 35px;
-      width: 150px;
-      padding: 0 15px;
-      color: grey;
+    .navbar-nav {
+        @media (max-width: 992px) {
+            justify-content: center;
+            align-items: center;
+        }
     }
-    .btn-outline-info {
-      color: $btn-color;
-      border-color: $btn-color;
-      border-radius: 0;
-      height: 35px;
-      padding: 0 25px;
-      &:hover {
-        color: #fff;
-        background-color: $btn-color;
-        border-color: none;
-      }
-    }
-  }
-  @media (max-width: 576px) {
-    //.nav-btn {
-    //  width: 100%;
-    //}
-    .dropdown-menu {
-      ul {
+    .navbar-collapse {
         flex-direction: column;
-        li {
-          border: none;
-        }
-      }
     }
-  }
+    .logged-as-name {
+        color: #000 !important;
+    }
+    .dropdown-menu {
+        border-radius: 0;
+        border: 0;
+        margin: 0;
+        min-height: 70px;
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            li {
+                padding: 0 25px;
+                margin: 10px 0;
+                border-right: 1px solid grey;
+                &:last-of-type {
+                    border: none;
+                }
+                a {
+                    color: grey;
+                    font-size: 0.9rem;
+                }
+            }
+        }
+    }
+    .language-dropdown-menu {
+        li {
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            color: grey;
+        }
+        select {
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            padding-top: 0;
+            height: 35px;
+            width: 150px;
+            padding: 0 15px;
+            color: grey;
+        }
+        .btn-outline-info {
+            color: $btn-color;
+            border-color: $btn-color;
+            border-radius: 0;
+            height: 35px;
+            padding: 0 25px;
+            &:hover {
+                color: #fff;
+                background-color: $btn-color;
+                border-color: none;
+            }
+        }
+    }
+    @media (max-width: 576px) {
+        //.nav-btn {
+        //  width: 100%;
+        //}
+        .dropdown-menu {
+            ul {
+                flex-direction: column;
+                li {
+                    border: none;
+                }
+            }
+        }
+    }
 }

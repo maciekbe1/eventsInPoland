@@ -2,58 +2,34 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { getToken } from "../../api/api";
-import parse from 'html-react-parser';
-import { dateConverter } from "../../containers/date"
+import parse from "html-react-parser";
 
 const Event = props => {
     const [event, setEvent] = useState();
-    const [image, setImage] =useState()
+    const [eventDetails, setEventDetails] = useState();
+    const [image, setImage] = useState();
     useEffect(() => {
         getToken(process.env.REACT_APP_USER_DATA_KEY).then(res => {
-            function getUserAccount() {
-                axios({
-                    method: "get",
-                    url: `https://b2ng.bpower2.com/index.php/restApi/request/model/SzanseSprzedazy/params/{"pipeline":13, "id": ${
-                        props.match.params.event
-                    }}`,
-                    headers: {
-                        Authorization: res.data.token
-                    }
-                });
-            }
- 
-            function getUserPermissions() {
-                return axios({
-                    method: "get",
-                    url: `https://b2ng.bpower2.com/index.php/restApi/request/model/SzanseSprzedazyDane/params/{"spd_id_sp": ${
-                        props.match.params.event
-                    }}`,
-                    headers: {
-                        Authorization: res.data.token
-                    }
-                });
-            }
-            axios.all([getUserAccount(), getUserPermissions()]).then(
-                axios.spread(function(acct, perms) {
-                    perms.data.data.objects.map(item => {
-                        if (item.text_value.indexOf("<img") === 0) {
-                            setImage(item.text_value)
-                        }
-                        return null
-                    });
-                })
-            );
             axios({
                 method: "get",
-                url: `https://b2ng.bpower2.com/index.php/restApi/request/model/SzanseSprzedazy/params/{"pipeline":13, "id": ${
+                url: `https://b2ng.bpower2.com/index.php/restApi/events?id=${
                     props.match.params.event
-                }}`,
+                }&details=true`,
                 headers: {
                     Authorization: res.data.token
                 }
             })
                 .then(res => {
-                    setEvent(res.data.data.objects[0]);
+                    let img = "";
+                    res.data.eventDetails.map(item =>
+                        item.text_value.indexOf("<img") === 0
+                            ? (img = item.text_value)
+                            : ""
+                    );
+
+                    setEvent(res.data.event);
+                    setEventDetails(res.data.eventDetails);
+                    setImage(img);
                 })
                 .catch(error => {
                     console.log(error);
@@ -62,20 +38,68 @@ const Event = props => {
     }, []);
 
     let content = "";
-    if (event) {
+    if (event && eventDetails) {
         content = (
-            <div>
-                <h2>{event.title}</h2>
-                <p>date start: {dateConverter(event.from_date)}</p>
-                <p>date end: {dateConverter(event.to_date)}</p>
-                <div className="mw-100 event-image">{parse(`${image}`)}</div>
-            </div>
+            <>
+                <div className="mw-100 event-image">
+                    {parse(`${image}`)}
+                    <div className="image-content">
+                        <h2>{event.title}</h2>
+                        <p>
+                            {/* {dateConverterWithHour(event.from_date)} -{" "}
+                            {dateConverterWithHour(event.to_date)} */}
+                            {event.type}
+                        </p>
+                    </div>
+                </div>
+                <div className="event-details">
+                    <div className="row">
+                        <div className="col-md-8 text">
+                            <h3>{event.title}</h3>
+                            <p>{eventDetails[2].text_value}</p>
+                        </div>
+                        <div className="col-md-4 details">
+                            <div className="detail">
+                                <div className="icon">
+                                    <i className="fas fa-clock fa-2x" />
+                                </div>
+                                <div className="text">
+                                    <p>{event.from_date}</p>
+                                    <p>{event.to_date}</p>
+                                </div>
+                            </div>
+                            <div className="detail">
+                                <div className="icon">
+                                    <i className="fas fa-map-marker-alt fa-2x" />
+                                </div>
+                                <div className="text">
+                                    <p>{eventDetails[1].text_value}</p>
+                                    <p>{eventDetails[3].text_value}</p>
+                                    <p>
+                                        {eventDetails[6].text_value}{" "}
+                                        {eventDetails[4].text_value}
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="detail">
+                                <div className="icon">
+                                    <i className="fas fa-money-bill-wave fa-2x" />
+                                </div>
+                                <div className="text">
+                                    {Number(event.value_in_currency).toFixed(2)}{" "}
+                                    {event.currency}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </>
         );
     } else {
         return null;
     }
     return (
-        <div>
+        <>
             <nav aria-label="breadcrumb">
                 <ul className="breadcrumb">
                     <div className="container d-flex flex-wrap">
@@ -95,7 +119,7 @@ const Event = props => {
                 </ul>
             </nav>
             <div className="container event-subpage">{content}</div>
-        </div>
+        </>
     );
 };
 export default Event;
