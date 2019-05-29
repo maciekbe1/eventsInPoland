@@ -10,7 +10,7 @@ import Square from "../components/EventsPage/Squqre";
 const EventsPage = props => {
     const context = useContext(Context);
     const { dispatch } = useContext(Context);
-    const [content, setContent] = useState();
+    const [content, setContent] = useState([]);
 
     useEffect(() => {
         getToken(process.env.REACT_APP_USER_DATA_KEY).then(res => {
@@ -44,8 +44,6 @@ const EventsPage = props => {
 
     useEffect(() => {
         let filteredItems = context.state.events;
-
-        console.log(filteredItems);
         const filtered = filteredItems.filter(item => {
             return (
                 item.event.title
@@ -55,7 +53,6 @@ const EventsPage = props => {
             );
         });
         const content = filtered.map((event, index) => {
-            console.log(event);
             const start = dateConverter(event.event.from_date);
             const end = dateConverter(event.event.to_date);
             const date = start === end ? start : start + " - " + end;
@@ -84,14 +81,11 @@ const EventsPage = props => {
                         img={event.eventDetails}
                     />
                 );
-            } else {
-                return <div>No search results</div>;
-            }
+            } 
+            return null
         });
-
         setContent(content);
     }, [context.state.events, context.state.searchEventByName]);
-
     return (
         <div>
             <nav aria-label="breadcrumb">

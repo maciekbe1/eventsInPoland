@@ -19,10 +19,10 @@ const JumbotronSearch = () => {
     };
     return (
         <div className="jumbotron-search d-flex align-items-center container-fluid">
-            <div className="container col-sm-5 text-center">
+            <div className="container col-xl-7 col-lg-8 col-md-8 text-center">
                 <h2>Find an event</h2>
                 <div className="row mb-3">
-                    <div className="col-sm-4">
+                    <div className="col-lg-4">
                         {/* <p className="my-1">from:</p> */}
                         <DatePicker
                             dropdownMode={"scroll"}
@@ -38,10 +38,10 @@ const JumbotronSearch = () => {
                             dateFormat="dd/MM/yyyy"
                         />
                     </div>
-                    <div className="col-sm-4">
+                    <div className="col-lg-4">
                         <p className="mb-0">range between</p>
                     </div>
-                    <div className="col-sm-4">
+                    <div className="col-lg-4">
                         {/* <p className="my-1">to:</p> */}
                         <DatePicker
                             dropdownMode={"scroll"}

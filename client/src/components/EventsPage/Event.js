@@ -39,6 +39,20 @@ const Event = props => {
 
     let content = "";
     if (event && eventDetails) {
+        const address = `${eventDetails[3].text_value} ${
+            eventDetails[6].text_value
+        } ${eventDetails[4].text_value}`;
+        const encode = encodeURIComponent(address);
+        const map = `<iframe
+            width="700"
+            height="440"
+            src="https://maps.google.com/maps?width=700&amp;height=440&amp;hl=en&amp;q=${encode}+(Tytu%C5%82)&amp;ie=UTF8&amp;t=k&amp;z=12&amp;iwloc=B&amp;output=embed"
+            frameborder="0"
+            scrolling="no"
+            marginheight="0"
+            marginwidth="0"
+            title="map"
+        />`;
         content = (
             <>
                 <div className="mw-100 event-image">
@@ -56,7 +70,7 @@ const Event = props => {
                     <div className="row">
                         <div className="col-md-8 text">
                             <h3>{event.title}</h3>
-                            <p>{eventDetails[2].text_value}</p>
+                            <p>{parse(eventDetails[2].text_value)}</p>
                         </div>
                         <div className="col-md-4 details">
                             <div className="detail">
@@ -90,6 +104,7 @@ const Event = props => {
                                     {event.currency}
                                 </div>
                             </div>
+                            <div className="detail">{parse(map)}</div>
                         </div>
                     </div>
                 </div>

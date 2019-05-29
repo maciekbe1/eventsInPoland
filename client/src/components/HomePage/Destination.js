@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Context from "../../context";
+
 const Destination = () => {
+    const { dispatch } = useContext(Context);
     const [eventsLength, setEventsLength] = useState(0);
 
     useEffect(() => {
@@ -13,6 +16,10 @@ const Destination = () => {
                 setEventsLength(res.data.length);
             });
     }, []);
+    const clearDataSearchParams = () => {
+        dispatch({ type: "START_EVENT_DATE", payload: null });
+        dispatch({ type: "END_EVENT_DATE", payload: null });
+    };
     return (
         <div className="destination container-fluid">
             <div className="container p-0">
@@ -41,7 +48,7 @@ const Destination = () => {
                         {
                             // context.state.isAuth ? <Link to="/all-events">See {context.state.events.length} events in Poland</Link> : <button data-toggle="modal" data-target="#loginModal">See {context.state.events.length} events in Poland</button>
                         }
-                        <Link to="/all-events">
+                        <Link to="/all-events" onClick={clearDataSearchParams}>
                             See {eventsLength} events in Poland
                         </Link>
                     </div>

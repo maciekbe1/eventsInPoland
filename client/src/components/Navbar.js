@@ -20,6 +20,14 @@ const Navbar = () => {
         sessionStorage.removeItem("gwtoken");
         sessionStorage.removeItem("gwlog");
     };
+    const resetEventsFilter = () => {
+        dispatch({
+            type: "SEARCH_EVENT_BY_NAME",
+            payload: ""
+        })
+        dispatch({ type: "START_EVENT_DATE", payload: null })
+        dispatch({ type: "END_EVENT_DATE", payload: null })
+    }
     return (
         <div className="nav-bar container-fluid">
             <nav className="navbar navbar-expand-lg navbar-light">
@@ -63,7 +71,7 @@ const Navbar = () => {
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="contact">
+                                <Link className="nav-link" to="/contact">
                                     Contact
                                 </Link>
                             </li>
@@ -71,12 +79,7 @@ const Navbar = () => {
                                 <Link
                                     className="nav-link"
                                     to="/all-events"
-                                    onClick={() =>
-                                        dispatch({
-                                            type: "SEARCH_EVENT_BY_NAME",
-                                            payload: ""
-                                        })
-                                    }
+                                    onClick={resetEventsFilter}
                                 >
                                     Events
                                 </Link>
