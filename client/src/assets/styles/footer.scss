@@ -1,62 +1,66 @@
-@import './colors';
+@import "./colors";
 
 .footer {
-  padding: 40px 0 20px 0;
-  color: #fff;
-  .language-select-container {
-    font-size: .75rem;
-    display: flex;
-    flex-wrap: wrap;
-    color: grey;
-    ul {
-      padding: 0 5px;
-    }
-  }
-  .bottom-nav,
-  .bottom-nav-language {
-    display: flex;
-    flex-wrap: wrap;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    padding-top: 20px;
-    li {
-      color: #fff;
-      margin-right: 20px;
-      font-size: .75rem;
-      &:hover {
-        text-decoration: underline;
-        cursor: pointer;
-      }
-    }
-  }
-  p {
-    margin-bottom: 5px;
-    font-size: 12px;
-    color: grey;
-  }
-  a {
+    padding: 40px 0 20px 0;
     color: #fff;
-  }
-  .footer-notice {
-    padding-top: 8px;
-  }
-  .footer-icons {
-    display: flex;
-    justify-content: flex-end;
-    padding-top: 20px;
-    i {
-      height: 38px;
-      width: 38px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border: 1px solid #333;
-      border-radius: 50%;
-      margin: 0 3px;
-      &:hover {
-        border-color: #666
-      }
+    .language-select-container {
+        font-size: 0.75rem;
+        display: flex;
+        flex-wrap: wrap;
+        color: grey;
+        ul {
+            padding: 0 5px;
+        }
     }
-  }
+    .bottom-nav,
+    .bottom-nav-language {
+        display: flex;
+        flex-wrap: wrap;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        padding-top: 20px;
+        li {
+            color: #fff;
+            margin-right: 20px;
+            font-size: 0.75rem;
+            &:hover {
+                text-decoration: underline;
+                cursor: pointer;
+            }
+        }
+    }
+    p {
+        margin-bottom: 5px;
+        font-size: 12px;
+        color: grey;
+    }
+    a {
+        color: #fff;
+    }
+    .footer-notice {
+        padding-top: 8px;
+    }
+    .footer-icons {
+        display: flex;
+        justify-content: flex-end;
+        padding-top: 20px;
+        i {
+            height: 38px;
+            width: 38px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #333;
+            border-radius: 50%;
+            margin: 0 3px;
+            &:hover {
+                border-color: #666;
+            }
+        }
+    }
+    .footer-company-info {
+        margin-top: 30px;
+        color: grey;
+    }
 }

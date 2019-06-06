@@ -3,11 +3,14 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { getToken } from "../../api/api";
 import parse from "html-react-parser";
+import Loading from "../Loading/Loading";
 
 const Event = props => {
     const [event, setEvent] = useState();
     const [eventDetails, setEventDetails] = useState();
     const [image, setImage] = useState();
+    const [isLoading, setIsLoading] = useState(true);
+
     useEffect(() => {
         getToken(process.env.REACT_APP_USER_DATA_KEY).then(res => {
             axios({
@@ -30,6 +33,7 @@ const Event = props => {
                     setEvent(res.data.event);
                     setEventDetails(res.data.eventDetails);
                     setImage(img);
+                    setIsLoading(false);
                 })
                 .catch(error => {
                     console.log(error);
@@ -37,22 +41,26 @@ const Event = props => {
         });
     }, []);
 
-    let content = "";
-    if (event && eventDetails) {
+    const createMap = () => {
         const address = `${eventDetails[3].text_value} ${
             eventDetails[6].text_value
         } ${eventDetails[4].text_value}`;
         const encode = encodeURIComponent(address);
         const map = `<iframe
-            width="700"
             height="440"
-            src="https://maps.google.com/maps?width=700&amp;height=440&amp;hl=en&amp;q=${encode}+(Tytu%C5%82)&amp;ie=UTF8&amp;t=k&amp;z=12&amp;iwloc=B&amp;output=embed"
+            src="https://maps.google.com/maps?width=700&amp;height=440&amp;hl=en&amp;q=${encode}+(Tytu%C5%82)&amp;ie=UTF8&amp;t=&amp;z=12&amp;iwloc=B&amp;output=embed"
             frameborder="0"
             scrolling="no"
             marginheight="0"
             marginwidth="0"
             title="map"
         />`;
+
+        return parse(map);
+    };
+
+    let content = "";
+    if (event && eventDetails) {
         content = (
             <>
                 <div className="mw-100 event-image">
@@ -68,11 +76,11 @@ const Event = props => {
                 </div>
                 <div className="event-details">
                     <div className="row">
-                        <div className="col-md-8 text">
+                        <div className="col-lg-8 text">
                             <h3>{event.title}</h3>
                             <p>{parse(eventDetails[2].text_value)}</p>
                         </div>
-                        <div className="col-md-4 details">
+                        <div className="col-lg-4 details">
                             <div className="detail">
                                 <div className="icon">
                                     <i className="fas fa-clock fa-2x" />
@@ -80,6 +88,15 @@ const Event = props => {
                                 <div className="text">
                                     <p>{event.from_date}</p>
                                     <p>{event.to_date}</p>
+                                </div>
+                            </div>
+                            <div className="detail">
+                                <div className="icon">
+                                    <i className="fas fa-money-bill-wave fa-2x" />
+                                </div>
+                                <div className="text">
+                                    {Number(event.value_in_currency).toFixed(2)}{" "}
+                                    {event.currency}
                                 </div>
                             </div>
                             <div className="detail">
@@ -95,24 +112,14 @@ const Event = props => {
                                     </p>
                                 </div>
                             </div>
-                            <div className="detail">
-                                <div className="icon">
-                                    <i className="fas fa-money-bill-wave fa-2x" />
-                                </div>
-                                <div className="text">
-                                    {Number(event.value_in_currency).toFixed(2)}{" "}
-                                    {event.currency}
-                                </div>
-                            </div>
-                            <div className="detail">{parse(map)}</div>
+                            <div className="detail">{createMap()}</div>
                         </div>
                     </div>
                 </div>
             </>
         );
-    } else {
-        return null;
     }
+
     return (
         <>
             <nav aria-label="breadcrumb">
@@ -133,7 +140,9 @@ const Event = props => {
                     </div>
                 </ul>
             </nav>
-            <div className="container event-subpage">{content}</div>
+            <div className="container event-subpage">
+                {!isLoading ? content : <Loading />}
+            </div>
         </>
     );
 };

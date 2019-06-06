@@ -10,4 +10,19 @@
             color: #cef2ec;
         }
     }
+    iframe {
+        width: 100%;
+        height: 450px;
+    }
+
+    .contact-details {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px 0;
+        h3 {
+            margin-bottom: 20px;
+        }
+    }
 }
