@@ -5,6 +5,7 @@ import logo from "../assets/images/logo/logo.png";
 
 import Signin from "./Auth/Signin";
 import Context from "../context";
+import SignInNavbar from "./Auth/SignInNavbar";
 
 const Navbar = () => {
     const context = useContext(Context);
@@ -24,18 +25,22 @@ const Navbar = () => {
         dispatch({
             type: "SEARCH_EVENT_BY_NAME",
             payload: ""
-        })
-        dispatch({ type: "START_EVENT_DATE", payload: null })
-        dispatch({ type: "END_EVENT_DATE", payload: null })
-    }
+        });
+        dispatch({ type: "START_EVENT_DATE", payload: null });
+        dispatch({ type: "END_EVENT_DATE", payload: null });
+    };
     return (
         <div className="nav-bar container-fluid">
-            <nav className="navbar navbar-expand-lg navbar-light">
+            <nav className="navbar navbar-expand-sm navbar-light">
                 <div className="container">
-                    <Link className="navbar-brand" to="/">
-                        <img src={logo} alt="logo" />
-                    </Link>
-                    <div className="any-questions" />
+                    <div className="login-container">
+                        <Link className="navbar-brand" to="/">
+                            <img src={logo} alt="logo" />
+                        </Link>
+
+                        <SignInNavbar />
+                    </div>
+
                     <div className="nav-btn text-center">
                         <button
                             className="navbar-toggler"
@@ -56,17 +61,17 @@ const Navbar = () => {
                     >
                         <ul className="navbar-nav ml-auto">
                             <li className="nav-item">
-                                <Link className="nav-link" to="about">
+                                <Link className="nav-link" to="/about">
                                     About
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="recomended">
+                                <Link className="nav-link" to="/recomended">
                                     Recomended
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="news">
+                                <Link className="nav-link" to="/news">
                                     News
                                 </Link>
                             </li>

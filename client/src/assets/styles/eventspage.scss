@@ -97,6 +97,9 @@
             .detail {
                 display: flex;
                 margin-top: 15px;
+                iframe {
+                    width: 100%;
+                }
             }
             i {
                 display: flex;

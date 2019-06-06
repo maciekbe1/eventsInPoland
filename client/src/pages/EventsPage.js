@@ -6,11 +6,13 @@ import axios from "axios";
 import Context from "../context";
 import { dateConverter } from "../containers/date";
 import Square from "../components/EventsPage/Squqre";
+import Loading from "../components/Loading/Loading";
 
 const EventsPage = props => {
     const context = useContext(Context);
     const { dispatch } = useContext(Context);
     const [content, setContent] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         getToken(process.env.REACT_APP_USER_DATA_KEY).then(res => {
@@ -27,6 +29,7 @@ const EventsPage = props => {
                         return arrOfEvent.push(event);
                     });
                     dispatch({ type: "GET_EVENTS", payload: arrOfEvent });
+                    setIsLoading(false);
                 })
                 .catch(error => {
                     console.log(error);
@@ -81,11 +84,12 @@ const EventsPage = props => {
                         img={event.eventDetails}
                     />
                 );
-            } 
-            return null
+            }
+            return null;
         });
         setContent(content);
     }, [context.state.events, context.state.searchEventByName]);
+
     return (
         <div>
             <nav aria-label="breadcrumb">
@@ -112,7 +116,9 @@ const EventsPage = props => {
                     </div>
                 </div>
                 <div className="container">
-                    <div className="row">{content}</div>
+                    <div className="row">
+                        {!isLoading ? content : <Loading />}
+                    </div>
                 </div>
             </div>
         </div>
