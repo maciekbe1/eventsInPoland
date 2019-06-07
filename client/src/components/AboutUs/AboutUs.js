@@ -1,14 +1,26 @@
 import React, { useEffect, useState } from "react";
-import "../../assets/styles/news.scss";
 import { getContentBpower } from "../../api/api";
+import "../../assets/styles/aboutus.scss";
+import AboutUsList from "./AboutUsList";
 
-const News = props => {
+const AboutUs = props => {
     const [content, setContent] = useState();
+    const [list, setList] = useState();
 
     useEffect(() => {
         const getContent = getContentBpower(props.location.pathname);
         getContent.then(res => setContent(res));
     }, []);
+
+    useEffect(() => {
+        let arr = [];
+        for (var key in content) {
+            if (content.hasOwnProperty(key)) {
+                arr.push(content[key]);
+            }
+        }
+        setList(arr);
+    }, [content]);
 
     if (!content) {
         return null;
@@ -28,9 +40,9 @@ const News = props => {
                         </div>
                     </ol>
                 </nav>
-                <div className="container news-page">
-                    <div className="news-banner d-flex align-items-end mb-5">
-                        <div className="news-search d-flex align-items-center justify-content-center">
+                <div className="container about-us-page">
+                    <div className="about-us-banner d-flex align-items-end mb-5">
+                        <div className="about-us-search d-flex align-items-center justify-content-center">
                             <div className="col-sm-5 text-center">
                                 <h1>{content.text_1}</h1>
                             </div>
@@ -38,8 +50,11 @@ const News = props => {
                     </div>
                     <div className="container">
                         <div className="row">
-                            <h3>{content.text_2}</h3>
-                            <p>{content.text_3}</p>
+                            <p>{content.text_2}</p>
+                            <h3>{content.text_3}</h3>
+                            <ul>
+                                <AboutUsList list={list} />
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -48,4 +63,4 @@ const News = props => {
     }
 };
 
-export default News;
+export default AboutUs;

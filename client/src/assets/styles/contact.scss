@@ -24,5 +24,20 @@
         h3 {
             margin-bottom: 20px;
         }
+        .social-media {
+            i {
+                margin: 10px;
+                transition: 0.2s;
+                &:hover {
+                    transform: scale(1.05);
+                }
+            }
+            .fa-facebook-square {
+                color: #4267b2;
+            }
+            .fa-linkedin {
+                color: #0077b5;
+            }
+        }
     }
 }

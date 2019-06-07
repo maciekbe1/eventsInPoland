@@ -14,12 +14,13 @@ import HomePage from "./pages/HomePage";
 import EventsPage from "./pages/EventsPage";
 import NotFound from "./pages/NotFound";
 import RegisterPage from "./pages/RegisterPage";
-import Calendar from "./pages/Calendar";
+import Calendar from "./components/Calendar/Calendar";
 
 import Context from "./context";
 import reducer from "./reducer";
 import Contact from "./components/Contact/Contact";
 import News from "./components/News/News";
+import AboutUs from "./components/AboutUs/AboutUs";
 
 const App = () => {
     const initialState = useContext(Context);
@@ -40,6 +41,8 @@ const App = () => {
                             <Route path="/register" component={RegisterPage} />
                             <Route path="/contact" component={Contact} />
                             <Route path="/news" component={News} />
+                            <Route path="/about-us" component={AboutUs} />
+                            <Route path="/calendar" component={Calendar} />
                             <Route
                                 path="/all-events/event/:event"
                                 component={Event}
@@ -49,7 +52,6 @@ const App = () => {
                                 path="/find-popular/:popularEvents"
                                 component={PopularEvents}
                             />
-                            <Route path="/test-calendar" component={Calendar} />
                             <Route component={NotFound} />
                         </Switch>
                         <Footer />
