@@ -1,0 +1,28 @@
+.calendar-page {
+    .calendar-banner {
+        background: url("../images/katowice.jpeg") center no-repeat;
+        background-size: cover;
+        height: 300px;
+        .calendar-search {
+            background-color: rgba(24, 51, 78, 0.9);
+            width: 100%;
+            height: 100px;
+            color: #cef2ec;
+        }
+    }
+    iframe {
+        width: 100%;
+        height: 450px;
+    }
+
+    .calendar-details {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px 0;
+        h3 {
+            margin-bottom: 20px;
+        }
+    }
+}
