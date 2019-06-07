@@ -84,9 +84,9 @@ const SignInNavbar = props => {
 
                     sessionStorage.setItem("gwtoken", token);
                     sessionStorage.setItem("gwlog", login);
-                    document.querySelector("#closeLoginModal").click();
-                    document.querySelector("#login").value = "";
-                    document.querySelector("#password").value = "";
+                    // document.querySelector("#closeLoginModal").click();
+                    // document.querySelector("#login").value = "";
+                    // document.querySelector("#password").value = "";
                 })
                 .catch(error => {
                     console.log(error);
@@ -114,23 +114,23 @@ const SignInNavbar = props => {
     };
 
     return (
-        <div className="login-form-navbar">
+        <div className="login-form-navbar col-lg-6 d-flex justify-content-end align-items-center">
             {context.state.isAuth ? (
-                <div>
-                    Logged in as:{" "}
-                    <span className="logged-as-name">
+                <div className="d-flex align-items-center">
+                    {props.content.text_11}: &nbsp;
+                    <span className="logged-as-name mr-4">
                         {context.state.currentUser}
                     </span>
                     <Link
-                        className="nav-link btn btn-primary mt-2"
+                        className="nav-link btn btn-primary"
                         to="/"
                         onClick={onSignOut}
                     >
-                        Sign out
+                        {props.content.text_10}
                     </Link>
                 </div>
             ) : (
-                <div className="login-form-navbar">
+                <div className="d-flex justify-content-end">
                     <form
                         id="signInModal"
                         onKeyPress={e =>
@@ -142,7 +142,7 @@ const SignInNavbar = props => {
                                 htmlFor="recipient-name"
                                 className="col-form-label"
                             >
-                                Login:
+                                {props.content.text_8}
                             </label>
                             <input
                                 type="text"
@@ -156,7 +156,7 @@ const SignInNavbar = props => {
                                 htmlFor="recipient-name"
                                 className="col-form-label"
                             >
-                                Password:
+                                {props.content.text_9}
                             </label>
                             <input
                                 type="password"
@@ -168,14 +168,14 @@ const SignInNavbar = props => {
 
                         {loginFailure ? (
                             <div className="text-danger">
-                                Wrong login or password!
+                                {props.content.text_12}
                             </div>
                         ) : (
                             <div className="text-danger" />
                         )}
                     </form>
 
-                    <div className="login-form-navbar-btns">
+                    <div className="login-form-navbar-btns d-flex flex-column">
                         <button
                             type="button"
                             className="btn btn-outline-primary"
@@ -195,7 +195,7 @@ const SignInNavbar = props => {
                             className="btn btn-outline-secondary"
                             to="/register"
                         >
-                            Sign up
+                            {props.content.text_7}
                         </Link>
                     </div>
                 </div>

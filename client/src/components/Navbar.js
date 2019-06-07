@@ -1,26 +1,28 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import { getContentBpower } from "../api/api";
 import { Link } from "react-router-dom";
 import "../assets/styles/navbar.scss";
 import logo from "../assets/images/logo/logo.png";
 
-import Signin from "./Auth/Signin";
+// import Signin from "./Auth/Signin";
 import Context from "../context";
 import SignInNavbar from "./Auth/SignInNavbar";
 
 const Navbar = () => {
-    const context = useContext(Context);
+    const [content, setContent] = useState();
+    // const context = useContext(Context);
     const { dispatch } = useContext(Context);
-    const onSignOut = () => {
-        dispatch({
-            type: "SIGNOUT_USER",
-            payload: {
-                isAuth: false,
-                currentUser: null
-            }
-        });
-        sessionStorage.removeItem("gwtoken");
-        sessionStorage.removeItem("gwlog");
-    };
+    // const onSignOut = () => {
+    //     dispatch({
+    //         type: "SIGNOUT_USER",
+    //         payload: {
+    //             isAuth: false,
+    //             currentUser: null
+    //         }
+    //     });
+    //     sessionStorage.removeItem("gwtoken");
+    //     sessionStorage.removeItem("gwlog");
+    // };
     const resetEventsFilter = () => {
         dispatch({
             type: "SEARCH_EVENT_BY_NAME",
@@ -29,81 +31,102 @@ const Navbar = () => {
         dispatch({ type: "START_EVENT_DATE", payload: null });
         dispatch({ type: "END_EVENT_DATE", payload: null });
     };
-    return (
-        <div className="nav-bar container-fluid">
-            <nav className="navbar navbar-expand-sm navbar-light">
-                <div className="container">
-                    <div className="login-container">
-                        <Link className="navbar-brand" to="/">
-                            <img src={logo} alt="logo" />
-                        </Link>
+    useEffect(() => {
+        const getContent = getContentBpower(17);
+        getContent.then(res => setContent(res));
+    }, []);
 
-                        <SignInNavbar />
-                    </div>
+    if (!content) {
+        return null;
+    } else {
+        return (
+            <div className="nav-bar container-fluid">
+                <nav className="navbar navbar-expand-sm navbar-light">
+                    <div className="w-100">
+                        <div className="header-container row">
+                            <div className="col-lg-6">
+                                <Link className="navbar-brand" to="/">
+                                    <img src={logo} alt="logo" />
+                                </Link>
+                            </div>
+                            <SignInNavbar content={content} />
+                        </div>
 
-                    <div className="nav-btn text-center">
-                        <button
-                            className="navbar-toggler"
-                            type="button"
-                            data-toggle="collapse"
-                            data-target="#navbarSupportedContent"
-                            aria-controls="navbarSupportedContent"
-                            aria-expanded="false"
-                            aria-label="Toggle navigation"
+                        <div className="nav-btn">
+                            <button
+                                className="navbar-toggler"
+                                type="button"
+                                data-toggle="collapse"
+                                data-target="#navbarSupportedContent"
+                                aria-controls="navbarSupportedContent"
+                                aria-expanded="false"
+                                aria-label="Toggle navigation"
+                            >
+                                <span className="navbar-toggler-icon" />
+                            </button>
+                        </div>
+
+                        <div
+                            className="collapse navbar-collapse bg-primary"
+                            id="navbarSupportedContent"
                         >
-                            <span className="navbar-toggler-icon" />
-                        </button>
-                    </div>
-
-                    <div
-                        className="collapse navbar-collapse"
-                        id="navbarSupportedContent"
-                    >
-                        <ul className="navbar-nav ml-auto">
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/about">
-                                    About
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/recomended">
-                                    Recomended
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/news">
-                                    News
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/contact">
-                                    Contact
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    className="nav-link"
-                                    to="/all-events"
-                                    onClick={resetEventsFilter}
-                                >
-                                    Events
-                                </Link>
-                            </li>
-                            <li className="nav-item">
+                            <ul className="navbar-nav mr-auto">
+                                <li className="nav-item">
+                                    <Link
+                                        className="nav-link btn btn-primary text-white text-white"
+                                        to="/about-us"
+                                    >
+                                        {content.text_1}
+                                    </Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link
+                                        className="nav-link btn btn-primary text-white"
+                                        to="/calendar"
+                                    >
+                                        {content.text_2}
+                                    </Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link
+                                        className="nav-link btn btn-primary text-white"
+                                        to="/news"
+                                    >
+                                        {content.text_3}
+                                    </Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link
+                                        className="nav-link btn btn-primary text-white"
+                                        to="/contact"
+                                    >
+                                        {content.text_4}
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        className="nav-link btn btn-primary text-white"
+                                        to="/all-events"
+                                        onClick={resetEventsFilter}
+                                    >
+                                        {content.text_5}
+                                    </Link>
+                                </li>
+                                {/* <li className="nav-item">
                                 {context.state.isAuth ? (
                                     <a
-                                        className="nav-link"
+                                        className="nav-link text-white"
                                         href="#test"
                                         onClick={e => e.preventDefault()}
                                     >
                                         Logged in as:{" "}
-                                        <span className="logged-as-name">
+                                        <span className="logged-as-name text-white">
                                             {context.state.currentUser}
                                         </span>
                                     </a>
                                 ) : null}
-                            </li>
-                            <li className="nav-item">
+                            </li> */}
+                                {/* <li className="nav-item">
                                 {!context.state.isAuth ? (
                                     <div className="d-flex navbar-nav">
                                         <a
@@ -131,14 +154,15 @@ const Navbar = () => {
                                         Sign out
                                     </Link>
                                 )}
-                            </li>
-                        </ul>
+                            </li> */}
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <Signin />
-            </nav>
-        </div>
-    );
+                    {/* <Signin /> */}
+                </nav>
+            </div>
+        );
+    }
 };
 
 export default Navbar;

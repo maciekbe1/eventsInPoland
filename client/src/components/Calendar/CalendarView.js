@@ -12,9 +12,7 @@ const CalendarLocalizer = () => {
     moment.locale("en-gb");
     return (
         <BpowerEventsStore>
-            <div>
-                <CalendarConfig localizer={localizer} />
-            </div>
+            <CalendarConfig localizer={localizer} />
         </BpowerEventsStore>
     );
 };

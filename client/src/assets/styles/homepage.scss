@@ -1,10 +1,10 @@
-@import './colors';
-$transition: .3s;
+@import "./colors";
+$transition: 0.3s;
 
 .homepage-wrapper {
     .jumbotron {
         //height: 530px;
-        background: url('../images/jumbotron.jpg') center center no-repeat;
+        background: url("../images/jumbotron.jpg") center center no-repeat;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -50,7 +50,7 @@ $transition: .3s;
             }
         }
         i {
-            color: #05AC90;
+            color: #05ac90;
             line-height: 25px;
         }
     }
@@ -59,7 +59,7 @@ $transition: .3s;
         color: #ffffff;
         padding: 10px 0;
         font-size: 1.1rem;
-        background: rgba(24,51,78,.9);
+        background: rgba(24, 51, 78, 0.9);
         max-width: 2000px;
         .jumbotron-select-search {
             background: none;
@@ -74,8 +74,9 @@ $transition: .3s;
         .react-datepicker-wrapper input {
             text-align: center;
             border: 1px solid #ced4da;
-            border-radius: .25rem;
-            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+            border-radius: 0.25rem;
+            transition: border-color 0.15s ease-in-out,
+                box-shadow 0.15s ease-in-out;
         }
     }
     .find-event {
@@ -96,7 +97,7 @@ $transition: .3s;
             background-color: transparent;
             cursor: pointer;
             .card-img {
-                transition: .3s;
+                transition: 0.3s;
                 height: 100%;
                 object-fit: cover;
             }
@@ -111,15 +112,16 @@ $transition: .3s;
                     position: absolute;
                     bottom: 0;
                     background-color: rgba(0, 0, 0, 0.5);
-                    transition: .3s;
+                    transition: 0.3s;
                     p {
                         margin: 0;
                     }
                 }
-            } &:hover .card-img {
-                  transform: scale(1.05);
-                  box-shadow: 8px 10px 15px rgba(84, 121, 178, 0.7);
-              }
+            }
+            &:hover .card-img {
+                transform: scale(1.05);
+                box-shadow: 8px 10px 15px rgba(84, 121, 178, 0.7);
+            }
             &:hover .card-information {
                 transform: scale(1.05);
                 bottom: -5px;
@@ -145,27 +147,32 @@ $transition: .3s;
             }
         }
     }
-    .our-partners {
-        margin: 50px 0;
-        h2 {
-            padding-bottom: 32px;
-        }
-        .row {
-            justify-content: center;
-            align-items: center;
-        }
-        img {
-            width: 100%;
-            transition: .3s;
-            height: 150px;
-            object-fit: cover;
-            &:hover {
-                transform: scale(1.05);
+    .last-events {
+        .last-events-list {
+            margin: 0;
+            padding: 0;
+            .last-events-item {
+                min-height: 250px;
+                img {
+                    width: 100%;
+                    max-height: 180px;
+                    object-fit: cover;
+                }
+                &:hover {
+                    background-color: aliceblue;
+                }
             }
+        }
+
+        .last-events-title {
+            border-bottom: solid 3px #133870;
+        }
+        h3 {
+            margin: 0;
         }
     }
     .destination {
-        background: url('../images/destination.jpg') center top;
+        background: url("../images/destination.jpg") center top;
         .row {
             justify-content: center;
             h3 {
@@ -175,10 +182,10 @@ $transition: .3s;
                 // padding: 0 30px;
                 text-align: center;
                 line-height: 44px;
-                font-size: .9rem;
+                font-size: 0.9rem;
                 border-bottom-right-radius: 3px;
                 border-bottom-left-radius: 3px;
-                background-color: rgba(255, 255 ,255, 0.3);
+                background-color: rgba(255, 255, 255, 0.3);
                 color: #fff;
                 width: 230px;
                 margin: 0 auto 40px;

@@ -22,7 +22,7 @@ const Destination = () => {
     };
     return (
         <div className="destination container-fluid">
-            <div className="container p-0">
+            <div className="p-0">
                 <div className="row">
                     <div className="text-center">
                         <h3>Featured destination</h3>
