@@ -46,6 +46,9 @@ export function getContentBpower(location) {
         case "/news":
             contentId = 14;
             break;
+        case 14:
+            contentId = 14;
+            break;
         case "/contact":
             contentId = 15;
             break;

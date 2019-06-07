@@ -35,7 +35,12 @@ const LatestEvents = () => {
     const onChangeText = html => {
         const tmp = document.createElement("div");
         tmp.innerHTML = html;
-        return tmp.textContent.slice(0, 150) || tmp.innerText.slice(0, 150);
+        let txt = tmp.textContent.slice(0, 150) || tmp.innerText.slice(0, 150);
+        if (txt.length > 149) {
+            return txt + "...";
+        } else {
+            return txt;
+        }
     };
     function txt_content(txt) {
         if (typeof txt == "object") {
@@ -43,7 +48,7 @@ const LatestEvents = () => {
                 if (!item.type) {
                     return arr.splice(index, 1);
                 }
-                return arr;
+                return null;
             });
             return newtxt;
         } else {
@@ -92,7 +97,6 @@ const LatestEvents = () => {
                                                     )
                                                 )
                                             )}
-                                            ...
                                         </div>
                                     </div>
                                 </div>
