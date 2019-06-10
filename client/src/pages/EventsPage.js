@@ -59,21 +59,9 @@ const EventsPage = props => {
             const start = dateConverter(event.event.from_date);
             const end = dateConverter(event.event.to_date);
             const date = start === end ? start : start + " - " + end;
-            if (dateConverter(context.state.startEventDate) == null) {
-                return (
-                    <Square
-                        key={index}
-                        title={event.event.title}
-                        date={date}
-                        id={event.event.id}
-                        img={event.eventDetails}
-                    />
-                );
-            } else if (
-                dateConverter(context.state.startEventDate) <=
-                    dateConverter(event.from_date) &&
-                dateConverter(context.state.endEventDate) >=
-                    dateConverter(event.from_date)
+            if (
+                dateConverter(context.state.startEventDate) <= start &&
+                dateConverter(context.state.endEventDate) >= start
             ) {
                 return (
                     <Square
@@ -84,8 +72,19 @@ const EventsPage = props => {
                         img={event.eventDetails}
                     />
                 );
+            } else if (dateConverter(context.state.startEventDate) == null) {
+                return (
+                    <Square
+                        key={index}
+                        title={event.event.title}
+                        date={date}
+                        id={event.event.id}
+                        img={event.eventDetails}
+                    />
+                );
+            } else {
+                return null;
             }
-            return null;
         });
         setContent(content);
     }, [context.state.events, context.state.searchEventByName]);
