@@ -57,7 +57,7 @@ const Event = props => {
     if (event && eventDetails) {
         content = (
             <>
-                <div className="mw-100 event-image">
+                <div className="mw-100 event-image mb-2">
                     {parse(`${image}`)}
                     <div className="image-content">
                         <h2>{event.title}</h2>
@@ -116,25 +116,25 @@ const Event = props => {
 
     return (
         <>
-            <nav aria-label="breadcrumb">
-                <ul className="breadcrumb">
-                    <div className="container d-flex flex-wrap">
-                        <li className="breadcrumb-item">
-                            <Link to="/">Home</Link>
-                        </li>
-                        <li className="breadcrumb-item">
-                            <Link to="/all-events">All Events</Link>
-                        </li>
-                        <li
-                            className="breadcrumb-item active"
-                            aria-current="page"
-                        >
-                            {event ? event.title : null}
-                        </li>
-                    </div>
-                </ul>
-            </nav>
             <div className="container event-subpage">
+                <nav aria-label="breadcrumb">
+                    <ul className="breadcrumb mb-2">
+                        <div className="container d-flex flex-wrap">
+                            <li className="breadcrumb-item">
+                                <Link to="/">Home</Link>
+                            </li>
+                            <li className="breadcrumb-item">
+                                <Link to="/all-events">All Events</Link>
+                            </li>
+                            <li
+                                className="breadcrumb-item active"
+                                aria-current="page"
+                            >
+                                {event ? event.title : null}
+                            </li>
+                        </div>
+                    </ul>
+                </nav>
                 {!isLoading ? content : <Loading />}
             </div>
         </>
