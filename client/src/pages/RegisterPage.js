@@ -73,7 +73,6 @@ const RegisterPage = props => {
                 }
             })
                 .then(function(response) {
-                    // console.log(response)
                     if (response.data.code === 200) {
                         setSent(true);
                     } else {

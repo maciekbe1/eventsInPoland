@@ -161,6 +161,12 @@ $transition: 0.3s;
                 &:hover {
                     background-color: aliceblue;
                 }
+                .latest-events-title {
+                    color: #000;
+                    &:hover {
+                        text-decoration: none;
+                    }
+                }
             }
         }
 
