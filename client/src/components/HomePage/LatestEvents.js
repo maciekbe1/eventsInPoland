@@ -4,7 +4,8 @@ import { getToken } from "../../api/api";
 import axios from "axios";
 import Loading from "../../components/Loading/Loading";
 import parse from "html-react-parser";
-const LatestEvents = () => {
+
+const LatestEvents = props => {
     const [events, setEvents] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -22,7 +23,6 @@ const LatestEvents = () => {
                 }
             });
             const sorted = result.data.sort(function(a, b) {
-                // console.log(a);
                 return (
                     new Date(b.event.from_date) - new Date(a.event.from_date)
                 );
@@ -31,7 +31,7 @@ const LatestEvents = () => {
             setLoading(true);
         };
     }, []);
-    // console.log(events);
+
     const onChangeText = html => {
         const tmp = document.createElement("div");
         tmp.innerHTML = html;
@@ -55,10 +55,11 @@ const LatestEvents = () => {
             return txt;
         }
     }
+
     return (
         <div className="last-events mt-2">
             <div className="bg-primary last-events-title">
-                <h3 className="text-white p-2">Latest Events</h3>
+                <h3 className="text-white p-2">{props.content.text_12}</h3>
             </div>
             <div className="last-events-list row container-fluid">
                 {!loading ? (
@@ -87,7 +88,16 @@ const LatestEvents = () => {
                                         </Link>
                                     </div>
                                     <div className="col-sm test-text">
-                                        <h5>{event.event.title}</h5>
+                                        <h5>
+                                            <Link
+                                                className="latest-events-title"
+                                                to={`/all-events/event/${
+                                                    event.event.id
+                                                }`}
+                                            >
+                                                {event.event.title}
+                                            </Link>
+                                        </h5>
                                         <div>
                                             {onChangeText(
                                                 txt_content(
@@ -97,6 +107,14 @@ const LatestEvents = () => {
                                                     )
                                                 )
                                             )}
+                                            <Link
+                                                to={`/all-events/event/${
+                                                    event.event.id
+                                                }`}
+                                            >
+                                                {" "}
+                                                read more
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>

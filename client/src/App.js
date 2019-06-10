@@ -21,6 +21,7 @@ import reducer from "./reducer";
 import Contact from "./components/Contact/Contact";
 import News from "./components/News/News";
 import AboutUs from "./components/AboutUs/AboutUs";
+import ScrollToTop from "react-router-scroll-top";
 
 const App = () => {
     const initialState = useContext(Context);
@@ -30,7 +31,7 @@ const App = () => {
         <div className="App">
             <Context.Provider value={{ state, dispatch }}>
                 <BrowserRouter>
-                    <div>
+                    <ScrollToTop>
                         <Navbar />
                         <Switch>
                             <Route
@@ -55,7 +56,7 @@ const App = () => {
                             <Route component={NotFound} />
                         </Switch>
                         <Footer />
-                    </div>
+                    </ScrollToTop>
                 </BrowserRouter>
             </Context.Provider>
         </div>

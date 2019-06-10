@@ -40,16 +40,20 @@ export function getEventsName() {
 export function getContentBpower(location) {
     let contentId;
     switch (location) {
+        case "/":
+        case 12:
+            contentId = 12;
+            break;
         case "/about-us":
+        case 13:
             contentId = 13;
             break;
         case "/news":
-            contentId = 14;
-            break;
         case 14:
             contentId = 14;
             break;
         case "/contact":
+        case 15:
             contentId = 15;
             break;
         case 16: // footer

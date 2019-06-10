@@ -70,7 +70,7 @@ const Autocomplete = props => {
                     onChange={findEventOnChange}
                     type="text"
                     className="form-control"
-                    placeholder="find event"
+                    placeholder={props.content.text_10}
                 />
                 {renderSuggestion()}
             </div>
@@ -86,7 +86,7 @@ const Autocomplete = props => {
                 className="btn btn-primary find-events"
                 onClick={suggestionsClear}
             >
-                Search
+                {props.content.text_11}
             </Link>
         </div>
     );
