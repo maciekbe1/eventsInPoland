@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import parse from "html-react-parser";
 
 export default function Squqre(props) {
-    console.log(props.img[5].text_value);
+    // console.log(props.img[5].text_value);
     return (
         <Link
             className="col-md-4 col-sm-6 event-block"

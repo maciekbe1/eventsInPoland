@@ -58,7 +58,7 @@ const LatestEvents = props => {
 
     return (
         <div className="last-events mt-2">
-            <div className="bg-primary last-events-title">
+            <div className="last-events-title">
                 <h3 className="text-white p-2">{props.content.text_12}</h3>
             </div>
             <div className="last-events-list row container-fluid">

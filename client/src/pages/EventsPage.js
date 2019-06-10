@@ -91,9 +91,9 @@ const EventsPage = props => {
     }, [context.state.events, context.state.searchEventByName]);
 
     return (
-        <div>
+        <div className="container events-page">
             <nav aria-label="breadcrumb">
-                <ol className="breadcrumb">
+                <ol className="breadcrumb mb-2">
                     <div className="container d-flex flex-wrap">
                         <li className="breadcrumb-item">
                             <Link to="/">Home</Link>
@@ -107,19 +107,15 @@ const EventsPage = props => {
                     </div>
                 </ol>
             </nav>
-            <div className="container events-page">
-                <div className="event-banner d-flex align-items-end mb-5">
-                    <div className="event-search d-flex align-items-center justify-content-center">
-                        <div className="col-sm-5 text-center">
-                            <h1>List of events</h1>
-                        </div>
+            <div className="event-banner d-flex align-items-end mb-5">
+                <div className="event-search d-flex align-items-center justify-content-center">
+                    <div className="col-sm-5 text-center">
+                        <h1>List of events</h1>
                     </div>
                 </div>
-                <div className="container">
-                    <div className="row">
-                        {!isLoading ? content : <Loading />}
-                    </div>
-                </div>
+            </div>
+            <div className="container">
+                <div className="row">{!isLoading ? content : <Loading />}</div>
             </div>
         </div>
     );

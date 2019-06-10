@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "../../assets/styles/contact.scss";
 import { getContentBpower } from "../../api/api";
 
@@ -15,20 +16,22 @@ const Contact = props => {
     } else {
         return (
             <>
-                <nav aria-label="breadcrumb">
-                    <ol className="breadcrumb">
-                        <div className="container d-flex flex-wrap">
-                            <li className="breadcrumb-item">Home</li>
-                            <li
-                                className="breadcrumb-item active"
-                                aria-current="page"
-                            >
-                                {content.text_1}
-                            </li>
-                        </div>
-                    </ol>
-                </nav>
                 <div className="container contact-page">
+                    <nav aria-label="breadcrumb">
+                        <ol className="breadcrumb mb-2">
+                            <div className="container d-flex flex-wrap">
+                                <li className="breadcrumb-item">
+                                    <Link to="/">Home</Link>
+                                </li>
+                                <li
+                                    className="breadcrumb-item active"
+                                    aria-current="page"
+                                >
+                                    {content.text_1}
+                                </li>
+                            </div>
+                        </ol>
+                    </nav>
                     <div className="contact-banner d-flex align-items-end mb-5">
                         <div className="contact-search d-flex align-items-center justify-content-center">
                             <div className="col-sm-5 text-center">

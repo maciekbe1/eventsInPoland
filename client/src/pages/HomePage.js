@@ -16,13 +16,11 @@ const HomePage = () => {
         getContent.then(res => setContent(res));
     }, []);
 
-    console.log(content);
-
     if (!content) {
         return null;
     } else {
         return (
-            <div className="homepage-wrapper container-fluid">
+            <div className="homepage-wrapper container">
                 {/* <FindPopularEvent /> */}
                 <div className="row">
                     <div className="col-sm-9">

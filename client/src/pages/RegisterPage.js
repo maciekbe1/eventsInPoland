@@ -85,9 +85,9 @@ const RegisterPage = props => {
         }
     };
     return (
-        <div>
+        <div className="container register-page">
             <nav aria-label="breadcrumb">
-                <ol className="breadcrumb">
+                <ol className="breadcrumb mb-2">
                     <div className="container d-flex flex-wrap">
                         <li className="breadcrumb-item">
                             <Link to="/">Home</Link>
@@ -101,86 +101,80 @@ const RegisterPage = props => {
                     </div>
                 </ol>
             </nav>
-            <div className="container register-page">
-                <h1 className="text-center">Create your personal account</h1>
-                <div className="row justify-content-center">
-                    {!sent ? (
-                        <form
-                            className="col-lg-6"
-                            onSubmit={event => handleSubmit(event, values)}
-                        >
-                            <div className="form-group">
-                                <label>Login</label>
-                                <Input
-                                    name="login"
-                                    placeholder=""
-                                    type="login"
-                                    value={values.login}
-                                    onChange={onChange}
-                                    className="form-control"
-                                />
-                                {"login" in postMessage
-                                    ? handleLoginError()
-                                    : null}
-                            </div>
-                            <div className="form-group">
-                                <label>Email</label>
-                                <Input
-                                    name="email"
-                                    placeholder=""
-                                    type="email"
-                                    value={values.email}
-                                    onChange={onChange}
-                                    className="form-control"
-                                    required
-                                />
-                                {"email" in postMessage
-                                    ? handleEmailError()
-                                    : null}
-                            </div>
-                            <div className="form-group">
-                                <label>Password</label>
-                                <Input
-                                    name="password"
-                                    placeholder=""
-                                    type="password"
-                                    value={values.password}
-                                    onChange={onChange}
-                                    className="form-control"
-                                    required
-                                />
-                                {handlePasswordError(values)}
-                            </div>
-                            <div className="form-group">
-                                <label>Repeat password</label>
-                                <Input
-                                    name="passwordRepeat"
-                                    placeholder=""
-                                    type="password"
-                                    value={values.passwordRepeat}
-                                    onChange={onChange}
-                                    className="form-control"
-                                    required
-                                />
-                            </div>
-                            <button type="submit">Send</button>
-                        </form>
-                    ) : (
-                        <div className="d-flex justify-content-center align-items-center flex-column register-success">
-                            <h2 className="text-success">Congratulation!</h2>
-                            <img
-                                alt="success"
-                                className="register-success-image"
-                                src={success}
+            <h1 className="text-center">Create your personal account</h1>
+            <div className="row justify-content-center">
+                {!sent ? (
+                    <form
+                        className="col-lg-6"
+                        onSubmit={event => handleSubmit(event, values)}
+                    >
+                        <div className="form-group">
+                            <label>Login</label>
+                            <Input
+                                name="login"
+                                placeholder=""
+                                type="login"
+                                value={values.login}
+                                onChange={onChange}
+                                className="form-control"
                             />
-                            <h4>You have been successfully registered.</h4>
-                            <h3 className="text-center">
-                                Please check your registered Email for email
-                                verification.
-                            </h3>
+                            {"login" in postMessage ? handleLoginError() : null}
                         </div>
-                    )}
-                </div>
+                        <div className="form-group">
+                            <label>Email</label>
+                            <Input
+                                name="email"
+                                placeholder=""
+                                type="email"
+                                value={values.email}
+                                onChange={onChange}
+                                className="form-control"
+                                required
+                            />
+                            {"email" in postMessage ? handleEmailError() : null}
+                        </div>
+                        <div className="form-group">
+                            <label>Password</label>
+                            <Input
+                                name="password"
+                                placeholder=""
+                                type="password"
+                                value={values.password}
+                                onChange={onChange}
+                                className="form-control"
+                                required
+                            />
+                            {handlePasswordError(values)}
+                        </div>
+                        <div className="form-group">
+                            <label>Repeat password</label>
+                            <Input
+                                name="passwordRepeat"
+                                placeholder=""
+                                type="password"
+                                value={values.passwordRepeat}
+                                onChange={onChange}
+                                className="form-control"
+                                required
+                            />
+                        </div>
+                        <button type="submit">Send</button>
+                    </form>
+                ) : (
+                    <div className="d-flex justify-content-center align-items-center flex-column register-success">
+                        <h2 className="text-success">Congratulation!</h2>
+                        <img
+                            alt="success"
+                            className="register-success-image"
+                            src={success}
+                        />
+                        <h4>You have been successfully registered.</h4>
+                        <h3 className="text-center">
+                            Please check your registered Email for email
+                            verification.
+                        </h3>
+                    </div>
+                )}
             </div>
         </div>
     );

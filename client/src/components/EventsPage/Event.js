@@ -23,16 +23,10 @@ const Event = props => {
                 }
             })
                 .then(res => {
-                    let img = "";
-                    res.data.eventDetails.map(item =>
-                        item.text_value.indexOf("<img") === 0
-                            ? (img = item.text_value)
-                            : ""
-                    );
-
+                    console.log(res.data.eventDetails[5].text_value);
                     setEvent(res.data.event);
                     setEventDetails(res.data.eventDetails);
-                    setImage(img);
+                    setImage(res.data.eventDetails[5].text_value);
                     setIsLoading(false);
                 })
                 .catch(error => {

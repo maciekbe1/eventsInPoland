@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../../assets/styles/news.scss";
 import { getContentBpower } from "../../api/api";
+import { Link } from "react-router-dom";
 
 const News = props => {
     const [content, setContent] = useState();
@@ -9,26 +10,27 @@ const News = props => {
         const getContent = getContentBpower(props.location.pathname);
         getContent.then(res => setContent(res));
     }, []);
-
     if (!content) {
         return null;
     } else {
         return (
             <>
-                <nav aria-label="breadcrumb">
-                    <ol className="breadcrumb">
-                        <div className="container d-flex flex-wrap">
-                            <li className="breadcrumb-item">Home</li>
-                            <li
-                                className="breadcrumb-item active"
-                                aria-current="page"
-                            >
-                                {content.text_1}
-                            </li>
-                        </div>
-                    </ol>
-                </nav>
                 <div className="container news-page">
+                    <nav aria-label="breadcrumb">
+                        <ol className="breadcrumb mb-2">
+                            <div className="container d-flex flex-wrap">
+                                <li className="breadcrumb-item">
+                                    <Link to="/">Home</Link>
+                                </li>
+                                <li
+                                    className="breadcrumb-item active"
+                                    aria-current="page"
+                                >
+                                    {content.text_1}
+                                </li>
+                            </div>
+                        </ol>
+                    </nav>
                     <div className="news-banner d-flex align-items-end mb-5">
                         <div className="news-search d-flex align-items-center justify-content-center">
                             <div className="col-sm-5 text-center">

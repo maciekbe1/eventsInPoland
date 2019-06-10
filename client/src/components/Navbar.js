@@ -40,10 +40,10 @@ const Navbar = () => {
         return null;
     } else {
         return (
-            <div className="nav-bar container-fluid">
+            <div className="nav-bar container">
                 <nav className="navbar navbar-expand-sm navbar-light">
                     <div className="w-100">
-                        <div className="header-container row">
+                        <div className="header-container row mb-2">
                             <div className="col-lg-6">
                                 <Link className="navbar-brand" to="/">
                                     <img src={logo} alt="logo" />
@@ -67,13 +67,13 @@ const Navbar = () => {
                         </div>
 
                         <div
-                            className="collapse navbar-collapse bg-primary"
+                            className="collapse navbar-collapse"
                             id="navbarSupportedContent"
                         >
                             <ul className="navbar-nav mr-auto">
                                 <li className="nav-item">
                                     <Link
-                                        className="nav-link btn btn-primary text-white text-white"
+                                        className="nav-link btn mr-2"
                                         to="/about-us"
                                     >
                                         {content.text_1}
@@ -81,7 +81,7 @@ const Navbar = () => {
                                 </li>
                                 <li className="nav-item">
                                     <Link
-                                        className="nav-link btn btn-primary text-white"
+                                        className="nav-link btn mr-2"
                                         to="/calendar"
                                     >
                                         {content.text_2}
@@ -89,7 +89,7 @@ const Navbar = () => {
                                 </li>
                                 <li className="nav-item">
                                     <Link
-                                        className="nav-link btn btn-primary text-white"
+                                        className="nav-link btn mr-2"
                                         to="/news"
                                     >
                                         {content.text_3}
@@ -97,7 +97,7 @@ const Navbar = () => {
                                 </li>
                                 <li className="nav-item">
                                     <Link
-                                        className="nav-link btn btn-primary text-white"
+                                        className="nav-link btn mr-2"
                                         to="/contact"
                                     >
                                         {content.text_4}
@@ -105,7 +105,7 @@ const Navbar = () => {
                                 </li>
                                 <li>
                                     <Link
-                                        className="nav-link btn btn-primary text-white"
+                                        className="nav-link btn mr-2"
                                         to="/all-events"
                                         onClick={resetEventsFilter}
                                     >
@@ -115,12 +115,12 @@ const Navbar = () => {
                                 {/* <li className="nav-item">
                                 {context.state.isAuth ? (
                                     <a
-                                        className="nav-link text-white"
+                                        className="nav-link"
                                         href="#test"
                                         onClick={e => e.preventDefault()}
                                     >
                                         Logged in as:{" "}
-                                        <span className="logged-as-name text-white">
+                                        <span className="logged-as-name">
                                             {context.state.currentUser}
                                         </span>
                                     </a>
@@ -139,7 +139,7 @@ const Navbar = () => {
                                             Sign in
                                         </a>
                                         <Link
-                                            className="nav-link btn btn-outline-secondary"
+                                            className="nav-link btn mr-2"
                                             to="/register"
                                         >
                                             Sign up

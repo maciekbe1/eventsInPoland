@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getContentBpower } from "../../api/api";
+import { Link } from "react-router-dom";
 import "../../assets/styles/aboutus.scss";
 import AboutUsList from "./AboutUsList";
 
@@ -27,20 +28,22 @@ const AboutUs = props => {
     } else {
         return (
             <>
-                <nav aria-label="breadcrumb">
-                    <ol className="breadcrumb">
-                        <div className="container d-flex flex-wrap">
-                            <li className="breadcrumb-item">Home</li>
-                            <li
-                                className="breadcrumb-item active"
-                                aria-current="page"
-                            >
-                                {content.text_1}
-                            </li>
-                        </div>
-                    </ol>
-                </nav>
                 <div className="container about-us-page">
+                    <nav aria-label="breadcrumb">
+                        <ol className="breadcrumb mb-2">
+                            <div className="container d-flex flex-wrap">
+                                <li className="breadcrumb-item">
+                                    <Link to="/">Home</Link>
+                                </li>
+                                <li
+                                    className="breadcrumb-item active"
+                                    aria-current="page"
+                                >
+                                    {content.text_1}
+                                </li>
+                            </div>
+                        </ol>
+                    </nav>
                     <div className="about-us-banner d-flex align-items-end mb-5">
                         <div className="about-us-search d-flex align-items-center justify-content-center">
                             <div className="col-sm-5 text-center">

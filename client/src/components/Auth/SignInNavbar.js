@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import sha256 from "js-sha256";
 import { getToken } from "../../api/api";
-
 import { Link } from "react-router-dom";
 import Context from "../../context";
 
@@ -117,7 +116,7 @@ const SignInNavbar = props => {
         <div className="login-form-navbar col-lg-6 d-flex justify-content-end align-items-center">
             {context.state.isAuth ? (
                 <div className="d-flex align-items-center">
-                    {props.content.text_11}: &nbsp;
+                    {props.content.text_11}&nbsp;
                     <span className="logged-as-name mr-4">
                         {context.state.currentUser}
                     </span>
@@ -170,9 +169,9 @@ const SignInNavbar = props => {
                             <div className="text-danger">
                                 {props.content.text_12}
                             </div>
-                        ) : (
-                            <div className="text-danger" />
-                        )}
+                        ) : null
+                        // null <div className="text-danger" />
+                        }
                     </form>
 
                     <div className="login-form-navbar-btns d-flex flex-column">

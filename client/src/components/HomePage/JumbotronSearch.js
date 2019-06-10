@@ -20,9 +20,9 @@ const JumbotronSearch = props => {
     return (
         <div className="jumbotron-search d-flex align-items-center container-fluid">
             <div className="container col-xl-7 col-lg-8 col-md-8 text-center">
-                <h2>{props.content.text_6}</h2>
-                <div className="row mb-3">
-                    <div className="col-lg-4">
+                <h2 className="mb-4">{props.content.text_6}</h2>
+                <div className="row">
+                    <div className="col-sm-6">
                         {/* <p className="my-1">from:</p> */}
                         <DatePicker
                             dropdownMode={"scroll"}
@@ -36,13 +36,8 @@ const JumbotronSearch = props => {
                             }
                             placeholderText={props.content.text_7}
                             dateFormat="dd/MM/yyyy"
+                            className="mb-3"
                         />
-                    </div>
-                    <div className="col-lg-4">
-                        <p className="mb-0">{props.content.text_9}</p>
-                    </div>
-                    <div className="col-lg-4">
-                        {/* <p className="my-1">to:</p> */}
                         <DatePicker
                             dropdownMode={"scroll"}
                             selected={context.state.endEventDate}
@@ -59,6 +54,17 @@ const JumbotronSearch = props => {
                             onBlur={() => setValid(false)}
                             className={valid ? "border-danger" : null}
                         />
+                    </div>
+                    {/* <div className="col-lg-4"> */}
+
+                    {/* </div> */}
+                    <div className="col-sm-6">
+                        {/* <p className="my-1">to:</p> */}
+                        {/* poprawic zeby pobieralo z props.content.text_9 */}
+                        <p>
+                            Please choose when the event should start and finish
+                        </p>
+                        {/* <p className="mb-0">{props.content.text_9}</p> */}
                     </div>
                 </div>
                 <p className={valid ? "d-block text-danger" : "d-none"}>

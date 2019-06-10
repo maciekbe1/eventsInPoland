@@ -24,8 +24,18 @@ $transition: 0.3s;
         }
         #navbarSupportedContent {
             border-bottom: solid 3px #133870;
+            background: rgb(66, 141, 205);
+            background: linear-gradient(
+                0deg,
+                rgba(66, 141, 205, 1) 0%,
+                rgba(15, 69, 135, 1) 100%
+            );
             a {
                 font-size: 24px;
+                color: #f4f4f4;
+                &:hover {
+                    text-decoration: underline;
+                }
             }
         }
         .header-container {
