@@ -29,12 +29,10 @@ const CalendarConfig = ({ localizer }) => {
                 .then(res => {
                     let obj = {};
                     res.data.data.objects.map(color => {
-                        console.log(color);
                         obj[`event_${color.option_name}`] = color.option_value;
                         return null;
                     });
                     setEventColors(obj);
-                    console.log(obj);
                 })
                 .catch(error => {
                     console.log(error);
