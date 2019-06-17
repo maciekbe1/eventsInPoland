@@ -13,7 +13,7 @@ export default function Hotel(props) {
                     ) : (
                         <img alt="default" src={img} />
                     )}
-                    <p>{hotel.event.title}</p>
+                    <b>{hotel.event.title}</b>
                 </Link>
             </div>
         </>

@@ -93,36 +93,39 @@ const EventsPage = props => {
         });
         setContent(content);
     }, [context.state.events, context.state.searchEventByName]);
-
-    return (
-        <div className="container events-page">
-            <nav aria-label="breadcrumb">
-                <ol className="breadcrumb mb-2">
-                    <div className="container d-flex flex-wrap">
-                        <li className="breadcrumb-item">
-                            <Link to="/">Home</Link>
-                        </li>
-                        <li
-                            className="breadcrumb-item active"
-                            aria-current="page"
-                        >
-                            All events
-                        </li>
-                    </div>
-                </ol>
-            </nav>
-            <div className="event-banner d-flex align-items-end mb-5">
-                <div className="event-search d-flex align-items-center justify-content-center">
-                    <div className="col-sm-5 text-center">
-                        <h1>List of events</h1>
+    if (isLoading) {
+        return <Loading />;
+    } else {
+        return (
+            <div className="container events-page">
+                <nav aria-label="breadcrumb">
+                    <ol className="breadcrumb mb-2">
+                        <div className="container d-flex flex-wrap">
+                            <li className="breadcrumb-item">
+                                <Link to="/">Home</Link>
+                            </li>
+                            <li
+                                className="breadcrumb-item active"
+                                aria-current="page"
+                            >
+                                All events
+                            </li>
+                        </div>
+                    </ol>
+                </nav>
+                <div className="event-banner d-flex align-items-end mb-5">
+                    <div className="event-search d-flex align-items-center justify-content-center">
+                        <div className="col-sm-5 text-center">
+                            <h1>List of events</h1>
+                        </div>
                     </div>
                 </div>
+                <div className="container">
+                    <div className="row">{content} </div>
+                </div>
             </div>
-            <div className="container">
-                <div className="row">{!isLoading ? content : <Loading />}</div>
-            </div>
-        </div>
-    );
+        );
+    }
 };
 
 export default EventsPage;

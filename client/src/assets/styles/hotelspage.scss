@@ -4,7 +4,7 @@
     .hotel-block {
         text-align: center;
         cursor: pointer;
-        text-decoration: none;
+
         img {
             width: 100%;
             height: 200px;
@@ -12,6 +12,14 @@
             transition: 0.4s;
             object-fit: cover;
             object-position: center;
+        }
+        a {
+            text-decoration: none;
+        }
+        &:hover {
+            img {
+                transform: scale(1.02);
+            }
         }
     }
     .hotels-banner {

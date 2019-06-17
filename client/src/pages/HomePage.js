@@ -6,6 +6,7 @@ import Destination from "../components/HomePage/Destination";
 import "../assets/styles/homepage.scss";
 import LatestEvents from "../components/HomePage/LatestEvents";
 import HomeNews from "../components/HomePage/HomeNews";
+import LastMinute from "../components/HomePage/LastMinute";
 // import Calendar from "../pages/Calendar";
 
 const HomePage = () => {
@@ -25,14 +26,15 @@ const HomePage = () => {
                 <div className="row">
                     <div className="col-lg-9">
                         <Jumbotron content={content} />
-                        <LatestEvents content={content} />
+
                         {/* <Calendar /> */}
                     </div>
                     <div className="col-lg-3">
                         <HomeNews />
                     </div>
                 </div>
-
+                <LatestEvents content={content} />
+                <LastMinute content={content} />
                 <Destination content={content} />
             </div>
         );
