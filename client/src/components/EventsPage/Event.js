@@ -4,6 +4,7 @@ import axios from "axios";
 import { getToken } from "../../api/api";
 import parse from "html-react-parser";
 import Loading from "../Loading/Loading";
+import { FacebookProvider, Like, Comments } from 'react-facebook';
 
 const Event = props => {
     const [event, setEvent] = useState();
@@ -109,7 +110,18 @@ const Event = props => {
                             <div className="detail">{createMap()}</div>
                         </div>
                     </div>
+                    
+
                 </div>
+
+                <FacebookProvider appId="345539959465303">
+                    <Like href="http://www.facebook.com" colorScheme="dark" showFaces share />
+                </FacebookProvider>
+
+                <FacebookProvider appId="345539959465303">
+                    <Comments href="http://www.facebook.com" />
+                </FacebookProvider>
+                
             </>
         );
     }

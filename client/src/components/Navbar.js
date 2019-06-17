@@ -3,6 +3,7 @@ import { getContentBpower } from "../api/api";
 import { Link } from "react-router-dom";
 import "../assets/styles/navbar.scss";
 import logo from "../assets/images/logo/logo.png";
+import logoue from "../assets/images/logoue.jpg";
 
 // import Signin from "./Auth/Signin";
 import Context from "../context";
@@ -48,6 +49,7 @@ const Navbar = () => {
                                 <Link className="navbar-brand" to="/">
                                     <img src={logo} alt="logo" />
                                 </Link>
+                                <img src={logoue} className="logoue" alt="flag" />
                             </div>
                             <SignInNavbar content={content} />
                         </div>
