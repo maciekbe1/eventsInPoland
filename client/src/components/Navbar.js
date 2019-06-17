@@ -49,7 +49,11 @@ const Navbar = () => {
                                 <Link className="navbar-brand" to="/">
                                     <img src={logo} alt="logo" />
                                 </Link>
-                                <img src={logoue} className="logoue" alt="flag" />
+                                <img
+                                    src={logoue}
+                                    className="logoue"
+                                    alt="flag"
+                                />
                             </div>
                             <SignInNavbar content={content} />
                         </div>
@@ -112,6 +116,14 @@ const Navbar = () => {
                                         onClick={resetEventsFilter}
                                     >
                                         {content.text_5}
+                                    </Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link
+                                        className="nav-link btn mr-2"
+                                        to="/hotels"
+                                    >
+                                        Hotels
                                     </Link>
                                 </li>
                                 {/* <li className="nav-item">

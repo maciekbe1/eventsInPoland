@@ -17,7 +17,7 @@ const Event = props => {
             axios({
                 method: "get",
                 url: `https://b2ng.bpower2.com/index.php/restApi/events?id=${
-                    props.match.params.event
+                    props.match.params.id
                 }&details=true`,
                 headers: {
                     Authorization: res.data.token
@@ -137,7 +137,7 @@ const Event = props => {
                                 <Link to="/">Home</Link>
                             </li>
                             <li className="breadcrumb-item">
-                                <Link to="/all-events">All Events</Link>
+                                <Link to="/hotels">Hotels</Link>
                             </li>
                             <li
                                 className="breadcrumb-item active"

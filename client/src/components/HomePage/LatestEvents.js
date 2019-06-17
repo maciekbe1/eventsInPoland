@@ -22,7 +22,14 @@ const LatestEvents = props => {
                     Authorization: res.data.token
                 }
             });
-            const sorted = result.data.sort(function(a, b) {
+            const arr = [];
+            result.data.map(item => {
+                if (item.event.type !== "Hotels") {
+                    arr.push(item);
+                }
+                return null;
+            });
+            const sorted = arr.sort(function(a, b) {
                 return (
                     new Date(b.event.from_date) - new Date(a.event.from_date)
                 );
@@ -76,7 +83,7 @@ const LatestEvents = props => {
                                     <p>{event.event.from_date}</p>
                                 </div>
                                 <div className="row">
-                                    <div className="col-sm">
+                                    <div className="col-lg-6">
                                         <Link
                                             to={`/all-events/event/${
                                                 event.event.id

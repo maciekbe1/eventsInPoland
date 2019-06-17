@@ -23,12 +23,12 @@ const HomePage = () => {
             <div className="homepage-wrapper container">
                 {/* <FindPopularEvent /> */}
                 <div className="row">
-                    <div className="col-sm-9">
+                    <div className="col-lg-9">
                         <Jumbotron content={content} />
                         <LatestEvents content={content} />
                         {/* <Calendar /> */}
                     </div>
-                    <div className="col-sm-3">
+                    <div className="col-lg-3">
                         <HomeNews />
                     </div>
                 </div>

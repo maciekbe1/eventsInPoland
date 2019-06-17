@@ -1,6 +1,7 @@
 import React, { useContext, useReducer } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { withCookies } from "react-cookie";
+import ScrollToTop from "react-router-scroll-top";
 
 import "./assets/styles/app.scss";
 
@@ -8,21 +9,22 @@ import Navbar from "./components/Navbar";
 import Event from "./components/EventsPage/Event";
 import PopularEvents from "./components/PopularCityEvents/PopularEvents";
 import Footer from "./components/Footer";
+import News from "./components/News/News";
+import AboutUs from "./components/AboutUs/AboutUs";
+import NewsDetails from "./components/News/NewsDetails";
+import Calendar from "./components/Calendar/Calendar";
+import Contact from "./components/Contact/Contact";
+import Hotel from "./components/Hotels/Hotel";
 
 import HomePage from "./pages/HomePage";
 // import ProtectedRoute from "./pages/ProtectedRoute";
 import EventsPage from "./pages/EventsPage";
 import NotFound from "./pages/NotFound";
 import RegisterPage from "./pages/RegisterPage";
-import Calendar from "./components/Calendar/Calendar";
+import HotelsPage from "./pages/HotelsPage";
 
 import Context from "./context";
 import reducer from "./reducer";
-import Contact from "./components/Contact/Contact";
-import News from "./components/News/News";
-import AboutUs from "./components/AboutUs/AboutUs";
-import ScrollToTop from "react-router-scroll-top";
-import NewsDetails from "./components/News/NewsDetails";
 
 const App = () => {
     const initialState = useContext(Context);
@@ -51,6 +53,8 @@ const App = () => {
                                 component={Event}
                             />
                             <Route path="/all-events" component={EventsPage} />
+                            <Route path="/hotels/:id" component={Hotel} />
+                            <Route path="/hotels" component={HotelsPage} />
                             <Route
                                 path="/find-popular/:popularEvents"
                                 component={PopularEvents}

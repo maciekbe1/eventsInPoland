@@ -63,7 +63,7 @@ const Autocomplete = props => {
         setSuggestionsEventList([]);
     };
     return (
-        <div className="d-flex px-2">
+        <div className="d-flex">
             <div className="w-100">
                 <input
                     value={context.state.searchEventByName}

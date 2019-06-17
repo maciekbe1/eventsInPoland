@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 const NewsPost = props => {
     const post = props.post;
     const text = post.text.slice(0, 200);
-    console.log(post.id);
     return (
         <>
             <h3>{post.title}</h3>

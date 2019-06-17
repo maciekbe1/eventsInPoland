@@ -21,44 +21,48 @@ const JumbotronSearch = props => {
         <div className="jumbotron-search d-flex align-items-center container-fluid">
             <div className="container col-xl-7 col-lg-8 col-md-8 text-center">
                 <h2 className="mb-4">{props.content.text_6}</h2>
-                <div className="row">
-                    <div className="col-sm-6">
+                <div className="">
+                    <div className="row">
                         {/* <p className="my-1">from:</p> */}
-                        <DatePicker
-                            dropdownMode={"scroll"}
-                            selected={context.state.startEventDate}
-                            selectsStart
-                            startDate={context.state.startEventDate}
-                            endDate={context.state.endEventDate}
-                            onChange={handleChangeStart}
-                            isClearable={
-                                context.state.startEventDate ? true : false
-                            }
-                            placeholderText={props.content.text_7}
-                            dateFormat="dd/MM/yyyy"
-                            className="mb-3"
-                        />
-                        <DatePicker
-                            dropdownMode={"scroll"}
-                            selected={context.state.endEventDate}
-                            selectsEnd
-                            startDate={context.state.startEventDate}
-                            endDate={context.state.endEventDate}
-                            onChange={handleChangeEnd}
-                            minDate={new Date()}
-                            placeholderText={props.content.text_8}
-                            dateFormat="dd/MM/yyyy"
-                            isClearable={
-                                context.state.endEventDate ? true : false
-                            }
-                            onBlur={() => setValid(false)}
-                            className={valid ? "border-danger" : null}
-                        />
+                        <div className="col-md-6">
+                            <DatePicker
+                                dropdownMode={"scroll"}
+                                selected={context.state.startEventDate}
+                                selectsStart
+                                startDate={context.state.startEventDate}
+                                endDate={context.state.endEventDate}
+                                onChange={handleChangeStart}
+                                isClearable={
+                                    context.state.startEventDate ? true : false
+                                }
+                                placeholderText={props.content.text_7}
+                                dateFormat="dd/MM/yyyy"
+                                className="mb-3"
+                            />
+                        </div>
+                        <div className="col-md-6">
+                            <DatePicker
+                                dropdownMode={"scroll"}
+                                selected={context.state.endEventDate}
+                                selectsEnd
+                                startDate={context.state.startEventDate}
+                                endDate={context.state.endEventDate}
+                                onChange={handleChangeEnd}
+                                minDate={new Date()}
+                                placeholderText={props.content.text_8}
+                                dateFormat="dd/MM/yyyy"
+                                isClearable={
+                                    context.state.endEventDate ? true : false
+                                }
+                                onBlur={() => setValid(false)}
+                                className={valid ? "border-danger" : null}
+                            />
+                        </div>
                     </div>
                     {/* <div className="col-lg-4"> */}
 
                     {/* </div> */}
-                    <div className="col-sm-6">
+                    <div className="">
                         {/* <p className="my-1">to:</p> */}
                         {/* poprawic zeby pobieralo z props.content.text_9 */}
                         <p>
