@@ -46,7 +46,12 @@ const EventsPage = props => {
     }, []);
 
     useEffect(() => {
-        let filteredItems = context.state.events;
+        let events = [];
+        context.state.events.map(event => {
+            return event.event.type !== "Hotels" ? events.push(event) : null;
+        });
+
+        let filteredItems = events;
         const filtered = filteredItems.filter(item => {
             return (
                 item.event.title

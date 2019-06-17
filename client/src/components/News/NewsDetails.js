@@ -33,7 +33,6 @@ const NewsDetails = props => {
         );
     }, []);
 
-    console.log(content);
     return (
         <>
             <div className="container event-subpage">
