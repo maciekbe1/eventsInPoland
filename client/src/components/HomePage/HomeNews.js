@@ -1,24 +1,33 @@
 import React, { useEffect, useState } from "react";
-import { getContentBpower } from "../../api/api";
+import { getNewsBpower } from "../../api/api";
+import HomeNewsPost from "./HomeNewsPost";
 
 export default function HomeNews() {
-    const [content, setContent] = useState();
+    const [news, setNews] = useState();
 
     useEffect(() => {
-        const getContent = getContentBpower(14);
-        getContent.then(res => setContent(res));
+        const getNews = getNewsBpower();
+        getNews.then(res => {
+            let arr = [];
+            for (const key in res) {
+                let value = res[key];
+                arr.push(value);
+            }
+            setNews(arr);
+        });
     }, []);
-    if (!content) {
+
+    if (!news) {
         return null;
     } else {
         return (
-            <div>
-                <h2>{content.text_1}</h2>
-                <div>
-                    <strong>{content.text_2}</strong>
-                    <p>{content.text_3}</p>
-                </div>
-            </div>
+            <>
+                {news
+                    ? news.map((post, index) => {
+                          return <HomeNewsPost post={post} key={index} />;
+                      })
+                    : null}
+            </>
         );
     }
 }

@@ -1,15 +1,28 @@
 import React, { useEffect, useState } from "react";
 import "../../assets/styles/news.scss";
-import { getContentBpower } from "../../api/api";
+import { getNewsBpower, getContentBpower } from "../../api/api";
 import { Link } from "react-router-dom";
+import NewsPost from "./NewsPost";
 
 const News = props => {
     const [content, setContent] = useState();
+    const [news, setNews] = useState();
 
     useEffect(() => {
-        const getContent = getContentBpower(props.location.pathname);
+        const getContent = getContentBpower(14);
         getContent.then(res => setContent(res));
+
+        const getNews = getNewsBpower();
+        getNews.then(res => {
+            let arr = [];
+            for (const key in res) {
+                let value = res[key];
+                arr.push(value);
+            }
+            setNews(arr);
+        });
     }, []);
+
     if (!content) {
         return null;
     } else {
@@ -40,8 +53,13 @@ const News = props => {
                     </div>
                     <div className="container">
                         <div className="row">
-                            <h3>{content.text_2}</h3>
-                            <p>{content.text_3}</p>
+                            {news
+                                ? news.map((post, index) => {
+                                      return (
+                                          <NewsPost post={post} key={index} />
+                                      );
+                                  })
+                                : null}
                         </div>
                     </div>
                 </div>

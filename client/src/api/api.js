@@ -82,3 +82,34 @@ export function getContentBpower(location) {
             return console.log(error);
         });
 }
+
+export function getNewsBpower() {
+    return axios
+        .get(
+            `https://b2ng.bpower2.com/index.php/restApi/common-posts/params/{"link_id":18}/?pagination={"page":1,"itemsPerPage":1000}`
+        )
+        .then(res => {
+            let obj = {};
+            res.data.map((item, index) => {
+                if (item.post.post_type === "30003155") {
+                    obj["post_" + item.post.menu_order] = {
+                        id: item.post.id,
+                        title: item.post.post_content
+                    };
+                } else {
+                    obj["post_" + item.post.menu_order] = {
+                        ...obj["post_" + item.post.menu_order],
+                        text: item.post.post_content,
+                        image: item.post.post_content_filtered
+                    };
+                }
+
+                return null;
+            });
+
+            return obj;
+        })
+        .catch(error => {
+            return console.log(error);
+        });
+}

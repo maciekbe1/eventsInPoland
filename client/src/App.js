@@ -22,6 +22,7 @@ import Contact from "./components/Contact/Contact";
 import News from "./components/News/News";
 import AboutUs from "./components/AboutUs/AboutUs";
 import ScrollToTop from "react-router-scroll-top";
+import NewsDetails from "./components/News/NewsDetails";
 
 const App = () => {
     const initialState = useContext(Context);
@@ -41,6 +42,7 @@ const App = () => {
                             />
                             <Route path="/register" component={RegisterPage} />
                             <Route path="/contact" component={Contact} />
+                            <Route path="/news/:id" component={NewsDetails} />
                             <Route path="/news" component={News} />
                             <Route path="/about-us" component={AboutUs} />
                             <Route path="/calendar" component={Calendar} />
