@@ -72,7 +72,7 @@ const Event = props => {
                     <div className="row">
                         <div className="col-lg-8 text">
                             <h3>{event.title}</h3>
-                            <p>{parse(eventDetails[2].text_value)}</p>
+                            {parse(eventDetails[2].text_value)}
                         </div>
                         <div className="col-lg-4 details">
                             <div className="detail">
@@ -113,7 +113,9 @@ const Event = props => {
 
                 <FacebookProvider appId="345539959465303">
                     <Like
-                        href="http://www.facebook.com"
+                        size={"large"}
+                        width={"200"}
+                        href={window.location.href}
                         colorScheme="dark"
                         showFaces
                         share
@@ -121,7 +123,7 @@ const Event = props => {
                 </FacebookProvider>
 
                 <FacebookProvider appId="345539959465303">
-                    <Comments href="http://www.facebook.com" />
+                    <Comments width={"100%"} href={window.location.href} />
                 </FacebookProvider>
             </>
         );

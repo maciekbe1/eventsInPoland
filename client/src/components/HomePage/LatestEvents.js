@@ -4,6 +4,7 @@ import { getToken } from "../../api/api";
 import axios from "axios";
 import Loading from "../../components/Loading/Loading";
 import parse from "html-react-parser";
+import { dateConverter } from "../../containers/date";
 
 const LatestEvents = props => {
     const [events, setEvents] = useState([]);
@@ -80,7 +81,9 @@ const LatestEvents = props => {
                             >
                                 <div className="d-flex justify-content-between">
                                     <p>{event.eventDetails[4].text_value}</p>
-                                    <p>{event.event.from_date}</p>
+                                    <p>
+                                        {dateConverter(event.event.from_date)}
+                                    </p>
                                 </div>
                                 <div className="row">
                                     <div className="col-lg-6">

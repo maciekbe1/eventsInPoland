@@ -182,15 +182,46 @@ $transition: 0.3s;
                 margin: 0;
             }
         }
-        .last-minute-list {
-            img {
-                width: 100%;
-                max-height: 180px;
-                object-fit: cover;
+        .hotels-table {
+            thead {
+                @media (max-width: 767px) {
+                    display: none;
+                }
             }
             .hotels-row {
+                .hotel-td-image {
+                    width: 15rem;
+                    @media (max-width: 767px) {
+                        width: 100%;
+                    }
+                }
+                td {
+                    vertical-align: middle;
+                    @media (max-width: 767px) {
+                        display: flex;
+                        justify-content: space-between;
+                    }
+                    p {
+                        margin: 0;
+                    }
+                    a {
+                        @media (max-width: 767px) {
+                            margin-inline-start: auto;
+                        }
+                    }
+                    .hotel-mobile-paragraph {
+                        display: none;
+                        @media (max-width: 767px) {
+                            display: inline-block;
+                        }
+                    }
+                }
                 &:hover {
                     background-color: aliceblue;
+                }
+                @media (max-width: 767px) {
+                    display: flex;
+                    flex-direction: column;
                 }
             }
         }

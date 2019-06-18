@@ -5,6 +5,7 @@ import axios from "axios";
 import Loading from "../../components/Loading/Loading";
 import parse from "html-react-parser";
 import styled from "styled-components";
+import { dateConverter } from "../../containers/date";
 
 export default function LastMinute() {
     const [hotels, setHotels] = useState([]);
@@ -44,53 +45,85 @@ export default function LastMinute() {
             <div className="last-minute-title events-in-poland-bar">
                 <h3 className="text-white p-2">Last minute</h3>
             </div>
-            <div className="last-minute-list container">
-                {!loading ? (
-                    <Loading />
-                ) : (
-                    hotels.slice(0, 4).map((event, index) => {
-                        const image = parse(event.eventDetails[5].text_value);
-                        const src = image.props.src;
-                        return (
-                            <div
-                                className="hotels-row row my-2 py-2 align-items-center"
-                                key={index}
-                            >
-                                <Div className="col-md" image={src}>
-                                    {/* {parse(event.eventDetails[5].text_value)} */}
-                                </Div>
-                                <div className="col-md">
-                                    <p>{event.event.title}</p>
-                                </div>
-                                <div className="col-sm">
-                                    <p>{event.event.from_date}</p>
-                                    <p>{event.event.to_date}</p>
-                                </div>
-                                <div className="col-sm">
-                                    <p>{event.eventDetails[4].text_value}</p>
-                                </div>
-                                <div className="col-sm">
-                                    <p>
-                                        {Number(
-                                            event.event.value_in_currency
-                                        ).toFixed(2)}
-                                    </p>
-                                </div>
-                                <div className="col-sm test-text">
-                                    <div>
+            {!loading ? (
+                <Loading />
+            ) : (
+                <table className="hotels-table table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">name</th>
+                            <th scope="col">date</th>
+                            <th scope="col">place</th>
+                            <th scope="col">cost</th>
+                            <th scope="col">action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {hotels.slice(0, 4).map((event, index) => {
+                            const image = parse(
+                                event.eventDetails[5].text_value
+                            );
+                            const src = image.props.src;
+                            return (
+                                <tr className="hotels-row" key={index}>
+                                    <td className="hotel-td-image">
+                                        <Div image={src}>
+                                            {/* {parse(event.eventDetails[5].text_value)} */}
+                                        </Div>
+                                    </td>
+                                    <td>
+                                        <p className="hotel-mobile-paragraph">
+                                            name:
+                                        </p>
+                                        <p>{event.event.title}</p>
+                                    </td>
+                                    <td>
+                                        <p className="hotel-mobile-paragraph">
+                                            date:
+                                        </p>
+                                        <p>
+                                            {dateConverter(
+                                                event.event.from_date
+                                            )}
+                                        </p>
+                                        <p>-</p>
+                                        <p>
+                                            {dateConverter(event.event.to_date)}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p className="hotel-mobile-paragraph">
+                                            place:
+                                        </p>
+                                        <p>
+                                            {event.eventDetails[4].text_value}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p className="hotel-mobile-paragraph">
+                                            cost:
+                                        </p>
+                                        <p>
+                                            {Number(
+                                                event.event.value_in_currency
+                                            ).toFixed(2)}
+                                        </p>
+                                    </td>
+                                    <td>
                                         <Link
                                             className="btn btn-primary"
                                             to={`/hotels/${event.event.id}`}
                                         >
                                             check
                                         </Link>
-                                    </div>
-                                </div>
-                            </div>
-                        );
-                    })
-                )}
-            </div>
+                                    </td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            )}
         </div>
     );
 }
