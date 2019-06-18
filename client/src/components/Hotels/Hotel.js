@@ -72,7 +72,7 @@ const Event = props => {
                     <div className="row">
                         <div className="col-lg-8 text">
                             <h3>{event.title}</h3>
-                            <p>{parse(eventDetails[2].text_value)}</p>
+                            {parse(eventDetails[2].text_value)}
                         </div>
                         <div className="col-lg-4 details">
                             <div className="detail">
