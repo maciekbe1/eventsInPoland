@@ -29,7 +29,7 @@ const HomePage = () => {
 
                         {/* <Calendar /> */}
                     </div>
-                    <div className="col-lg-3">
+                    <div className="col-lg-3 mt-5 mb-5">
                         <HomeNews />
                     </div>
                 </div>

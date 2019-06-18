@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 const NewsDetails = props => {
-    const [content, setContent] = useState({});
+    const [content, setContent] = useState({ title: "", text: "", image: "" });
 
     function getNewsTitle() {
         return axios.get(
@@ -66,7 +66,7 @@ const NewsDetails = props => {
                     <div className="row">
                         <div className="col-12">
                             <h3 className="text-center">{content.title}</h3>
-                            <p>{content.text}</p>
+                            <p>{parse(content.text)}</p>
                         </div>
                     </div>
                 </div>

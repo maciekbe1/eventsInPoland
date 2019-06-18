@@ -4,6 +4,7 @@ import { getToken } from "../../api/api";
 import axios from "axios";
 import Loading from "../../components/Loading/Loading";
 import parse from "html-react-parser";
+import styled from "styled-components";
 
 export default function LastMinute() {
     const [hotels, setHotels] = useState([]);
@@ -48,15 +49,17 @@ export default function LastMinute() {
                     <Loading />
                 ) : (
                     hotels.slice(0, 4).map((event, index) => {
+                        const image = parse(event.eventDetails[5].text_value);
+                        const src = image.props.src;
                         return (
                             <div
                                 className="hotels-row row my-2 py-2 align-items-center"
                                 key={index}
                             >
-                                <div className="col-sm">
-                                    {parse(event.eventDetails[5].text_value)}
-                                </div>
-                                <div className="col-sm">
+                                <Div className="col-md" image={src}>
+                                    {/* {parse(event.eventDetails[5].text_value)} */}
+                                </Div>
+                                <div className="col-md">
                                     <p>{event.event.title}</p>
                                 </div>
                                 <div className="col-sm">
@@ -77,9 +80,7 @@ export default function LastMinute() {
                                     <div>
                                         <Link
                                             className="btn btn-primary"
-                                            to={`/all-events/event/${
-                                                event.event.id
-                                            }`}
+                                            to={`/hotels/${event.event.id}`}
                                         >
                                             check
                                         </Link>
@@ -93,3 +94,11 @@ export default function LastMinute() {
         </div>
     );
 }
+
+const Div = styled.div`
+    background: url(${props => props.image});
+    width: 100%;
+    height: 150px;
+    background-position: center;
+    background-size: cover;
+`;
