@@ -5,11 +5,14 @@ import BigCalendar from "react-big-calendar";
 import { BpowerEvents } from "./bpower-events-context";
 import { getToken } from "../../api/api";
 import axios from "axios";
+import _ from "lodash";
 
 let allViews = Object.keys(BigCalendar.Views).map(k => BigCalendar.Views[k]);
 
 const CalendarConfig = ({ localizer }) => {
     const context = useContext(BpowerEvents);
+    const [events, setEvents] = useState([]);
+    const [eventsCategories, setEventsCategories] = useState([]);
     const [eventColors, setEventColors] = useState({});
 
     const redirectCalendar = props => {
@@ -39,6 +42,17 @@ const CalendarConfig = ({ localizer }) => {
                 });
         });
     }, []);
+
+    useEffect(() => {
+        setEvents(context.events);
+
+        const arr = [];
+        context.events.map(event => {
+            return arr.push(event.type);
+        });
+
+        setEventsCategories(_.uniq(arr));
+    }, [context.events]);
 
     const eventTypeColor = (event, start, end) => {
         if (end < new Date()) {
@@ -78,19 +92,63 @@ const CalendarConfig = ({ localizer }) => {
         }
     };
 
+    const filterCalendarEvents = category => {
+        const arr = [];
+        if (category === "Open this select menu") {
+            return setEvents(context.events);
+        }
+        context.events.map(event => {
+            return event.type === category ? arr.push(event) : null;
+        });
+
+        setEvents(arr);
+    };
     return (
-        <BigCalendar
-            popup
-            events={context.events}
-            views={allViews}
-            step={60}
-            defaultDate={new Date()}
-            localizer={localizer}
-            onSelectEvent={event => redirectCalendar(event)}
-            messages={context.messages}
-            // culture={"pl-PL"}
-            eventPropGetter={eventTypeColor}
-        />
+        <>
+            <select
+                className="custom-select"
+                onChange={e => filterCalendarEvents(e.target.value)}
+            >
+                <option defaultValue="reset">Open this select menu</option>
+                {eventsCategories.map((category, index) => {
+                    switch (category) {
+                        case "30003076":
+                            return (
+                                <option key={index} value={category}>
+                                    Adventures
+                                </option>
+                            );
+                        case "30003077":
+                            return (
+                                <option key={index} value={category}>
+                                    Motorcycle tours
+                                </option>
+                            );
+                        case "30003078":
+                            return (
+                                <option key={index} value={category}>
+                                    Hotels
+                                </option>
+                            );
+
+                        default:
+                            return null;
+                    }
+                })}
+            </select>
+            <BigCalendar
+                popup
+                events={events}
+                views={allViews}
+                step={60}
+                defaultDate={new Date()}
+                localizer={localizer}
+                onSelectEvent={event => redirectCalendar(event)}
+                messages={context.messages}
+                // culture={"pl-PL"}
+                eventPropGetter={eventTypeColor}
+            />
+        </>
     );
 };
 
