@@ -13,7 +13,7 @@ export default function HomeNews() {
                 let value = res[key];
                 arr.push(value);
             }
-            setNews(arr);
+            setNews(arr.reverse().slice(0, 2));
         });
     }, []);
 
