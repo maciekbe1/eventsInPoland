@@ -95,6 +95,15 @@
         .details {
             display: flex;
             flex-direction: column;
+            .register-btn {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                a {
+                    width: 100%;
+                    margin-bottom: 30px;
+                }
+            }
             .detail {
                 display: flex;
                 margin-top: 15px;

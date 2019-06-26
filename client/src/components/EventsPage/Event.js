@@ -75,6 +75,18 @@ const Event = props => {
                             {parse(eventDetails[2].text_value)}
                         </div>
                         <div className="col-lg-4 details">
+                            <div className="detail register-btn">
+                                <a
+                                    className="btn btn-primary find-events"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    href={`https://b2ng.bpower2.com/index.php/workflow/workflowInstance/create/wc_id/509/ProjectTask[sale_chance_id]/${
+                                        event.id
+                                    }`}
+                                >
+                                    Register
+                                </a>
+                            </div>
                             <div className="detail">
                                 <div className="icon">
                                     <i className="fas fa-clock fa-2x" />

@@ -94,7 +94,7 @@ const CalendarConfig = ({ localizer }) => {
 
     const filterCalendarEvents = category => {
         const arr = [];
-        if (category === "Open this select menu") {
+        if (category === "All events") {
             return setEvents(context.events);
         }
         context.events.map(event => {
@@ -109,7 +109,7 @@ const CalendarConfig = ({ localizer }) => {
                 className="custom-select"
                 onChange={e => filterCalendarEvents(e.target.value)}
             >
-                <option defaultValue="reset">Open this select menu</option>
+                <option defaultValue="reset">All events</option>
                 {eventsCategories.map((category, index) => {
                     switch (category) {
                         case "30003076":
