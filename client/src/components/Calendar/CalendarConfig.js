@@ -94,7 +94,7 @@ const CalendarConfig = ({ localizer }) => {
 
     const filterCalendarEvents = category => {
         const arr = [];
-        if (category === "Open this select menu") {
+        if (category === "All events") {
             return setEvents(context.events);
         }
         context.events.map(event => {
