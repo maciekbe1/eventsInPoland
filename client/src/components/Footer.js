@@ -1,15 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { getContentBpower } from "../api/api";
+import React, { useContext } from "react";
 import parse from "html-react-parser";
 import "../assets/styles/footer.scss";
+import Context from "../context";
 
 const Footer = props => {
-    const [content, setContent] = useState();
-
-    useEffect(() => {
-        const getContent = getContentBpower(16);
-        getContent.then(res => setContent(res));
-    }, []);
+    const context = useContext(Context);
+    const content = context.state.footer;
 
     if (!content) {
         return null;
@@ -24,7 +20,7 @@ const Footer = props => {
                         <p>{content.text_4}</p>
                         <p>{content.text_5}</p>
                     </div>
-                    {parse(content.text_6)}
+                    {content.text_6 ? parse(content.text_6) : null}
                     <p className="footer-notice">{content.text_7}</p>
                 </div>
             </div>

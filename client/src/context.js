@@ -7,7 +7,14 @@ const Context = createContext({
     eventsTitle: [],
     searchEventByName: "",
     startEventDate: null,
-    endEventDate: null
+    endEventDate: null,
+    language: "",
+    homepage: {},
+    aboutUs: {},
+    news: {},
+    contact: {},
+    footer: {},
+    navbar: {}
 });
 
 export default Context;

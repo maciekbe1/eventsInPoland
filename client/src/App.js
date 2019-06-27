@@ -15,6 +15,7 @@ import NewsDetails from "./components/News/NewsDetails";
 import Calendar from "./components/Calendar/Calendar";
 import Contact from "./components/Contact/Contact";
 import Hotel from "./components/Hotels/Hotel";
+import Language from "./components/Language/Language";
 
 import HomePage from "./pages/HomePage";
 // import ProtectedRoute from "./pages/ProtectedRoute";
@@ -35,6 +36,7 @@ const App = () => {
             <Context.Provider value={{ state, dispatch }}>
                 <BrowserRouter>
                     <ScrollToTop>
+                        <Language />
                         <Navbar />
                         <Switch>
                             <Route

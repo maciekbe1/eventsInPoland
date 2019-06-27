@@ -1,5 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
-import { getContentBpower } from "../api/api";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import "../assets/styles/navbar.scss";
 import logo from "../assets/images/logo/logo.png";
@@ -10,8 +9,9 @@ import Context from "../context";
 import SignInNavbar from "./Auth/SignInNavbar";
 
 const Navbar = () => {
-    const [content, setContent] = useState();
-    // const context = useContext(Context);
+    const context = useContext(Context);
+
+    const content = context.state.navbar;
     const { dispatch } = useContext(Context);
     // const onSignOut = () => {
     //     dispatch({
@@ -32,10 +32,6 @@ const Navbar = () => {
         dispatch({ type: "START_EVENT_DATE", payload: null });
         dispatch({ type: "END_EVENT_DATE", payload: null });
     };
-    useEffect(() => {
-        const getContent = getContentBpower(17);
-        getContent.then(res => setContent(res));
-    }, []);
 
     if (!content) {
         return null;

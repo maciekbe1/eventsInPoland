@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { getContentBpower } from "../api/api";
+import React, { useContext } from "react";
 import Jumbotron from "../components/HomePage/Jumbotron";
 // import FindPopularEvent from "../components/HomePage/FindPopularEvent";
 import Destination from "../components/HomePage/Destination";
@@ -8,14 +7,11 @@ import LatestEvents from "../components/HomePage/LatestEvents";
 import HomeNews from "../components/HomePage/HomeNews";
 import LastMinute from "../components/HomePage/LastMinute";
 // import Calendar from "../pages/Calendar";
+import Context from "../context";
 
 const HomePage = () => {
-    const [content, setContent] = useState();
-
-    useEffect(() => {
-        const getContent = getContentBpower(12);
-        getContent.then(res => setContent(res));
-    }, []);
+    const context = useContext(Context);
+    const content = context.state.homepage;
 
     if (!content) {
         return null;
