@@ -1,15 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import "../../assets/styles/contact.scss";
-import { getContentBpower } from "../../api/api";
+import Context from "../../context";
 
 const Contact = props => {
-    const [content, setContent] = useState();
-
-    useEffect(() => {
-        const getContent = getContentBpower(props.location.pathname);
-        getContent.then(res => setContent(res));
-    }, []);
+    const context = useContext(Context);
+    const content = context.state.contact;
 
     if (!content) {
         return null;

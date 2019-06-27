@@ -1,17 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { getContentBpower } from "../../api/api";
+import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import "../../assets/styles/aboutus.scss";
 import AboutUsList from "./AboutUsList";
+import Context from "../../context";
 
 const AboutUs = props => {
-    const [content, setContent] = useState();
-    const [list, setList] = useState();
-
-    useEffect(() => {
-        const getContent = getContentBpower(props.location.pathname);
-        getContent.then(res => setContent(res));
-    }, []);
+    const context = useContext(Context);
+    const content = context.state.aboutUs;
+    const [list, setList] = useState([]);
 
     useEffect(() => {
         let arr = [];

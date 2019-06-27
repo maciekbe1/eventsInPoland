@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "../../assets/styles/news.scss";
-import { getNewsBpower, getContentBpower } from "../../api/api";
+import { getNewsBpower } from "../../api/api";
 import { Link } from "react-router-dom";
 import NewsPost from "./NewsPost";
+import Context from "../../context";
 
 const News = props => {
-    const [content, setContent] = useState();
+    const context = useContext(Context);
+    const content = context.state.news;
     const [news, setNews] = useState();
 
     useEffect(() => {
-        const getContent = getContentBpower(14);
-        getContent.then(res => setContent(res));
-
         const getNews = getNewsBpower();
         getNews.then(res => {
             let arr = [];

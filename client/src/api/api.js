@@ -37,45 +37,31 @@ export function getEventsName() {
     return arr;
 }
 
-export function getContentBpower(location) {
-    let contentId;
-    switch (location) {
-        case "/":
-        case 12:
-            contentId = 12;
-            break;
-        case "/about-us":
-        case 13:
-            contentId = 13;
-            break;
-        case "/news":
-        case 14:
-            contentId = 14;
-            break;
-        case "/contact":
-        case 15:
-            contentId = 15;
-            break;
-        case 16: // footer
-            contentId = 16;
-            break;
-        case 17: // navbar
-            contentId = 17;
-            break;
-        default:
-            contentId = null;
-    }
-
+export function getContentBpower(location, language) {
     return axios
         .get(
-            `https://b2ng.bpower2.com/index.php/restApi/common-posts/params/{"link_id": ${contentId}}/?pagination={"page":1,"itemsPerPage":1000}`
+            `https://b2ng.bpower2.com/index.php/restApi/common-posts/params/{"link_id": ${location}}/?pagination={"page":1,"itemsPerPage":1000}`
         )
         .then(res => {
             let obj = {};
+
             res.data.map(item => {
                 obj["text_" + item.post.menu_order] = item.post.post_content;
                 return null;
             });
+            if (language !== "English") {
+                res.data.map(item => {
+                    item.translations.map(translation => {
+                        if (translation.language === language) {
+                            return (obj["text_" + item.post.menu_order] =
+                                translation.translation);
+                        }
+                        return null;
+                    });
+                    return null;
+                });
+            } else {
+            }
             return obj;
         })
         .catch(error => {
