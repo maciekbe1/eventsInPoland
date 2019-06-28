@@ -57,7 +57,7 @@ const RegisterPage = props => {
             axios({
                 method: "post",
                 url:
-                    "https://qang.bpower2.com/index.php/api/registerDocasUser?groupId=208d1458ba9870fdb3212293e03a6c57",
+                    "https://b2ng.bpower2.com/index.php/site/register?group=29bf94d1f95c2c7ffa010f2d3c0477f0",
                 headers: {
                     "X-PINGOTHER": "pingpong",
                     "Content-Type": "application/json"

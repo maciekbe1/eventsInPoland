@@ -2,19 +2,34 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Context from "../../context";
+import { getToken } from "../../api/api";
+
 
 const Destination = props => {
     const { dispatch } = useContext(Context);
     const [eventsLength, setEventsLength] = useState(0);
 
     useEffect(() => {
-        axios
-            .get(
-                'https://b2ng.bpower2.com/index.php/restApi/events/{"pipeline":13, "details: true"}'
-            )
-            .then(res => {
-                setEventsLength(res.data.length);
-            });
+        getToken(process.env.REACT_APP_USER_DATA_KEY).then(res => {
+            
+            axios({
+                method: "get",
+                url: process.env.REACT_APP_EVENTS_DETAILS,
+                headers: {
+                    Authorization: res.data.token
+                }
+            })
+                .then(res => {
+                    let events = [];
+                    res.data.map(event => {
+                        return event.event.type !== "Hotels" ? events.push(event) : null;
+                    });
+                    setEventsLength(events.length);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        });
     }, []);
     const clearDataSearchParams = () => {
         dispatch({ type: "START_EVENT_DATE", payload: null });
